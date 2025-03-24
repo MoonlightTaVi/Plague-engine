@@ -40,7 +40,7 @@ public class Noto implements Plogger {
 	
 	
 	
-	private String tag = "Plague";
+	//private String tag = "Plague";
 	private long lastUpdate = System.currentTimeMillis();
 	private FileHandle fh;
 	
@@ -65,27 +65,30 @@ public class Noto implements Plogger {
 	}
 
 	@Override
-	public void info(Object... messages) {
+	public void info(Object obj, Object... messages) {
+		String tag =  obj.getClass().getName();
 		String joined = join(messages);
-		String result = String.format("[INFO] (%s) %s", getDelay(), joined);
+		String result = String.format("(%s) [INFO] (%ss) %s", tag, getDelay(), joined);
 		Gdx.app.log(tag, result);
 		write(result);
 	}
 
 	@Override
-	public void error(Exception e, Object... messages) {
+	public void error(Object obj, Exception e, Object... messages) {
+		String tag =  obj.getClass().getName();
 		String joined = join(messages);
 		String stackTrace = String.join("\n\t", Arrays.stream(e.getStackTrace()).map(st -> st.toString()).toList());
 		
-		String result = String.format("[ERROR] (%s) %s %n%s %n%s", getDelay(), joined, e.getLocalizedMessage(), stackTrace);
+		String result = String.format("(%s) [ERROR] (%ss) %s %n%s %n%s", tag, getDelay(), joined, e.getLocalizedMessage(), stackTrace);
 		Gdx.app.log(tag, result);
 		write(result);
 	}
 
 	@Override
-	public void debug(Object... messages) {
+	public void debug(Object obj, Object... messages) {
+		String tag =  obj.getClass().getName();
 		String joined = join(messages);
-		String result = String.format("[DEBUG] (%s) %s", getDelay(), joined);
+		String result = String.format("(%s) [DEBUG] (%ss) %s", tag, getDelay(), joined);
 		Gdx.app.log(tag, result);
 		write(result);
 	}

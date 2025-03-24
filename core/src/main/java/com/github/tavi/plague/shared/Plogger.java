@@ -22,23 +22,26 @@ public interface Plogger {
 	/**
 	 * Logs any kind of Objects to a console, given that they have a toString() method.
 	 * The resulting String consists of this toString() calls, divided by a whitespace.
+	 * @param obj The object, which calls the log method
 	 * @param messages Some toString'able information to log
 	 */
-	public void info(Object... messages);
+	public void info(Object obj, Object... messages);
 	
 	/**
 	 * Logs an exception and some informative message alongside with it
+	 * @param obj The object, which calls the log method
 	 * @param e Caught exception
 	 * @param messages Some toString'able information to log
 	 */
-	public void error(Exception e, Object... messages);
+	public void error(Object obj, Exception e, Object... messages);
 	
 	/**
 	 * Same as {@link #Plogger.info(Object... messages)}, but is preferably used to
 	 * log some garbage information that should not be included to a final
 	 * build's .log files
-	 * @param messages
+	 * @param obj The object, which calls the log method
+	 * @param messages Some toString'able information to log
 	 */
-	public void debug(Object... messages);
+	public void debug(Object obj, Object... messages);
 	
 }
