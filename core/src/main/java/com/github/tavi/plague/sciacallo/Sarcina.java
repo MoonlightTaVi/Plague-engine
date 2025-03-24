@@ -66,7 +66,7 @@ public class Sarcina implements Assets {
 		for (FileHandle item : items) {
 			
 			if (item.extension().equals("png")) {
-				log.info("Found texture:", item.path());
+				log.info(this, "Found texture:", item.path());
 				assets.load(item.path(), Texture.class, textureParam);
 			} else if (item.isDirectory()) {
 				iterate(item);
@@ -87,7 +87,7 @@ public class Sarcina implements Assets {
 		
 		problematicAssets.add(internalTexturePath);
 		
-		log.error(new FileNotFoundException("Texture does not exist or corrupted"), "Path to the texture:", internalTexturePath);
+		log.error(this, new FileNotFoundException("Texture does not exist or corrupted"), "Path to the texture:", internalTexturePath);
 		
 		return null;
 	}

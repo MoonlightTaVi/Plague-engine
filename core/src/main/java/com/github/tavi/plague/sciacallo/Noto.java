@@ -68,9 +68,9 @@ public class Noto implements Plogger {
 	public void info(Object obj, Object... messages) {
 		String tag =  obj.getClass().getName();
 		String joined = join(messages);
-		String result = String.format("(%s) [INFO] (%ss) %s", tag, getDelay(), joined);
+		String result = String.format("[INFO] (%ss) %s", getDelay(), joined);
 		Gdx.app.log(tag, result);
-		write(result);
+		write(tag, result);
 	}
 
 	@Override
@@ -79,18 +79,18 @@ public class Noto implements Plogger {
 		String joined = join(messages);
 		String stackTrace = String.join("\n\t", Arrays.stream(e.getStackTrace()).map(st -> st.toString()).toList());
 		
-		String result = String.format("(%s) [ERROR] (%ss) %s %n%s %n%s", tag, getDelay(), joined, e.getLocalizedMessage(), stackTrace);
+		String result = String.format("[ERROR] (%ss) %s %n%s %n%s", getDelay(), joined, e.getLocalizedMessage(), stackTrace);
 		Gdx.app.log(tag, result);
-		write(result);
+		write(tag, result);
 	}
 
 	@Override
 	public void debug(Object obj, Object... messages) {
 		String tag =  obj.getClass().getName();
 		String joined = join(messages);
-		String result = String.format("(%s) [DEBUG] (%ss) %s", tag, getDelay(), joined);
+		String result = String.format("[DEBUG] (%ss) %s", getDelay(), joined);
 		Gdx.app.log(tag, result);
-		write(result);
+		write(tag, result);
 	}
 	
 	/**
@@ -109,6 +109,7 @@ public class Noto implements Plogger {
 	private String getDelay() {
 		long time = System.currentTimeMillis();
 		long delay = time - lastUpdate;
+		lastUpdate = time;
 		return String.format("%.3f", ((float)delay / 1000));
 	}
 	
@@ -117,11 +118,11 @@ public class Noto implements Plogger {
 	 * The method is synchronized, which means it is safe to use from different threads.
 	 * @param message Some text to write to a .log file
 	 */
-	private void write(String message) {
+	private void write(String tag, String message) {
 		synchronized (this) {
 			fh.writeString(new Timestamp(System.currentTimeMillis()).toString(), true);
 			
-			fh.writeString(message, true);
+			fh.writeString(String.format("[%s] %s", tag, message), true);
 			
 			fh.writeString("\n", true);
 		}

@@ -18,6 +18,7 @@ public class Scene implements Screen {
     	if (!assets.update()) {
     		System.out.print((int) (assets.getProgress() * 100));
     		System.out.println("%");
+    		return;
     	}
         
         assets.batch().begin();
