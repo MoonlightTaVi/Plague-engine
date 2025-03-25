@@ -45,4 +45,9 @@ public interface Assets {
 	 */
 	public float getProgress();
 	
+	/**
+	 * Clear all the assets from the cache
+	 */
+	public void dispose();
+	
 }

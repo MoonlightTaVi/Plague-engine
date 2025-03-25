@@ -106,6 +106,11 @@ public class Sarcina implements Assets {
 	public float getProgress() {
 		return assets.getProgress();
 	}
+
+	@Override
+	public void dispose() {
+		assets.dispose();
+	}
 	
 	
 

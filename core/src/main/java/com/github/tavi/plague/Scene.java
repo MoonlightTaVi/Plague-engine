@@ -50,6 +50,6 @@ public class Scene implements Screen {
 
     @Override
     public void dispose() {
-        // Destroy screen's assets here.
+        assets.dispose();
     }
 }
