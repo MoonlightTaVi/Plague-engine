@@ -31,8 +31,14 @@ public class Membra implements Components<Integer> {
 
 	// Registering 100_000 components at once takes ~28ms (a transient drop to 35FPS; it is a satisfactory result)
 	@Override
-	public <COMPONENT> COMPONENT register(Integer entity, Class<COMPONENT> componentType, COMPONENT component) {
+	public <COMPONENT> COMPONENT register(Integer entity, Class<COMPONENT> componentType, COMPONENT component) throws IllegalArgumentException {
 		int hash = getHash(entity, componentType);
+		if (components.containsKey(hash)) {
+			Class<?> existentObject = components.get(hash).getClass();
+			String existent = String.format("entityId:%d, componentType:%s", getIdFromHash(hash, existentObject), existentObject.getName());
+			String problematic = String.format("entityId:%d, componentType:%s", entity, componentType.getName());
+			throw new IllegalArgumentException(String.format("Component already registered: %d\n\tExistent: %s\n\tTrying to add: %s", hash, existent, problematic));
+		}
 		components.put(hash, component);
 		return null;
 	}
@@ -62,6 +68,13 @@ public class Membra implements Components<Integer> {
 		result = ((result << 5) - result) + id;
 		result = ((result << 5) - result) + componentType.hashCode();
 		
+		return result;
+	}
+	
+	private <COMPONENT> int getIdFromHash(int hash, Class<COMPONENT> componentType) {
+		int result = hash - componentType.hashCode();
+		result /= 31;
+		result -= 31;
 		return result;
 	}
 

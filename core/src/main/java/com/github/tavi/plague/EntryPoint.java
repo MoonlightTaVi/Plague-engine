@@ -19,6 +19,7 @@ public class EntryPoint extends Game {
         for (int i = 0; i < 100_000; i++) {
         	components.register(i, Transform.class, new Transform());
         }
+        
         log.debug(this, "Finished registering components.\nFirst check...");
         log.debug(this, "0's and 0's components are equal:", (components.get(0, Transform.class) == components.get(0, Transform.class)));
         log.debug(this, "0's and 1's components are equal:", (components.get(0, Transform.class) == components.get(1, Transform.class)));
