@@ -40,7 +40,7 @@ public class Membra implements Components<Integer> {
 			throw new IllegalArgumentException(String.format("Component already registered: %d\n\tExistent: %s\n\tTrying to add: %s", hash, existent, problematic));
 		}
 		components.put(hash, component);
-		return null;
+		return component;
 	}
 
 	// Tests show ~11ms on retrieving 100_000 components in a "while" loop, which is more than 76FPS (a good result)

@@ -1,29 +1,39 @@
 package com.github.tavi.plague;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.github.tavi.plague.sciacallo.Membra;
+import com.github.tavi.plague.sciacallo.Renderer;
+import com.github.tavi.plague.sciacallo.components.TextureMeta;
 import com.github.tavi.plague.shared.Assets;
+import com.github.tavi.plague.shared.components.Transform;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
 public class Scene implements Screen {
 	
+	// TEMPORARY --->
+	private Membra components = Membra.get();
+	private Renderer renderer = new Renderer();
 	private Assets assets = Assets.get();
+	// <--- TEMPORARY
 	
     @Override
     public void show() {
-        // Prepare your screen here.
+        Transform t = components.register(0, Transform.class, new Transform());
+        //t.x = 50;
+        //t.y = 50;
+        components.register(0, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", 0.5f, 0f));
     }
 
     @Override
     public void render(float delta) {
-    	if (!assets.update()) {
-    		System.out.print((int) (assets.getProgress() * 100));
-    		System.out.println("%");
-    		return;
-    	}
+    	ScreenUtils.clear(0, 0, 0, 1);
+    	
+    	//components.get(0, Transform.class).x += 5 * delta;
         
         assets.batch().begin();
         
-        assets.batch().draw(assets.texture("textures/real-male/male_torso_0.png"), 20, 20);
+        renderer.process(0);
         
         assets.batch().end();
     }
