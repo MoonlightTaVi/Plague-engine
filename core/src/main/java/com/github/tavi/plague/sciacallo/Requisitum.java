@@ -15,21 +15,21 @@ import com.github.tavi.plague.shared.Assets;
 
 /**
  * The "Sciacallo" version of the Assets. <br>
- * Uploads all the asset files at the instantiation.
+ * Scans for the asset files at the instantiation.
  * @see Assets
  */
-public class Sarcina implements Assets {
+public class Requisitum implements Assets {
 
-	private static volatile Sarcina INSTANCE = null;
+	private static volatile Requisitum INSTANCE = null;
 	
 	/**
-	 * Get a singleton of Sarcina
-	 * @return Singleton instance of Sarcina to store in some objects field afterwards
+	 * Get a singleton of Requisitum
+	 * @return Singleton instance of Requisitum to store in some objects field afterwards
 	 */
-	public static Sarcina get() {
+	public static Requisitum get() {
 		if (INSTANCE == null) {
-			synchronized (Sarcina.class) {
-				INSTANCE = new Sarcina();
+			synchronized (Requisitum.class) {
+				INSTANCE = new Requisitum();
 			}
 		}
 		return INSTANCE;
@@ -46,10 +46,10 @@ public class Sarcina implements Assets {
 	private Set<String> problematicAssets = new HashSet<>();
 	
 	/**
-	 * Instantiates a "Sarcina" {@link Assets} implementation, which scans the "assets/" directory for all the available asset files
+	 * Instantiates a "Requisitum" {@link Assets} implementation, which scans the "assets/" directory for all the available asset files
 	 * (but does not upload them; {@link #update()} is used for uploading).
 	 */
-	private Sarcina() {
+	private Requisitum() {
 		textureParam.minFilter = Texture.TextureFilter.Nearest;
 		
 		iterate(Gdx.files.internal("textures/"));

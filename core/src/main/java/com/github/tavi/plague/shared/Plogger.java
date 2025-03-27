@@ -1,22 +1,22 @@
 package com.github.tavi.plague.shared;
 
-import com.github.tavi.plague.sciacallo.Noto;
+import com.github.tavi.plague.sciacallo.Scriba;
 
 /**
  * "Plogger" stands for "Plague logger".
  * Implementations are used to log messages (either into the console or a file, or both)
- * @see Noto
+ * @see Scriba
  */
 public interface Plogger {
 	
 	/**
 	 * Get the singleton instance of a Plogger logger. <br>
-	 * As of v1.0.0 (Sciacallo) Noto is used.
-	 * @return the singleton of Noto logger
-	 * @see Noto
+	 * As of v1.0.0 (Sciacallo) Scriba is used.
+	 * @return the singleton of Scriba logger
+	 * @see Scriba
 	 */
 	public static Plogger get() {
-		return Noto.get();
+		return Scriba.get();
 	}
 	
 	/**

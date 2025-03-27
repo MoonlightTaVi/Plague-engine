@@ -15,24 +15,24 @@ import com.github.tavi.plague.shared.Plogger;
 
 /**
  * The "Sciacallo" version of Plogger.
- * Writes to the maximum of 3 files (the older are deleted at the application start),
+ * Writes to the maximum of 3 files (the older ones are deleted at the application start),
  * at the same time logging to the console. All logging levels are on by default.
  * @see Plogger
  */
-public class Noto implements Plogger {
+public class Scriba implements Plogger {
 	
-	private static volatile Noto INSTANCE = null;
+	private static volatile Scriba INSTANCE = null;
 	
 	/**
-	 * Get a singleton instance of the Noto logger
-	 * @return Noto logger singleton
+	 * Get a singleton instance of the Scriba logger
+	 * @return Scriba logger singleton
 	 * @see Plogger
-	 * @see Noto
+	 * @see Scriba
 	 */
-	public static Noto get() {
+	public static Scriba get() {
 		if (INSTANCE == null) {
-			synchronized (Noto.class) {
-				INSTANCE = new Noto();
+			synchronized (Scriba.class) {
+				INSTANCE = new Scriba();
 			}
 		}
 		return INSTANCE;
@@ -45,10 +45,10 @@ public class Noto implements Plogger {
 	private FileHandle fh;
 	
 	/**
-	 * Creates a Noto logger instance, also creating a new .log file and deleting the old ones,
+	 * Creates a Scriba logger instance, also creating a new .log file and deleting the old ones,
 	 * if there are more than 3 of them.
 	 */
-	private Noto() {
+	private Scriba() {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
 		Date date = new Date();

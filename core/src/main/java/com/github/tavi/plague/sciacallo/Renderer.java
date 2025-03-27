@@ -8,14 +8,14 @@ import com.github.tavi.plague.shared.components.Transform;
 import com.github.tavi.plague.shared.systems.EntityProcessor;
 import com.github.tavi.plague.shared.systems.VisibleProcessor;
 
-public class Renderer implements EntityProcessor<Integer>, VisibleProcessor {
+public class Renderer implements VisibleProcessor {
 	
 	private Assets assets = Assets.get();
 	private SpriteBatch batch = assets.batch();
-	private Membra components = Membra.get();
+	private Catti components = Catti.get();
 
 	@Override
-	public void process(Integer entityId) {
+	public void process(int entityId) {
 		Texture texture = null;
 		TextureMeta meta = null;
 		Transform transform = null;

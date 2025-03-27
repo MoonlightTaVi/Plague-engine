@@ -2,7 +2,7 @@ package com.github.tavi.plague;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.github.tavi.plague.sciacallo.Membra;
+import com.github.tavi.plague.sciacallo.Catti;
 import com.github.tavi.plague.sciacallo.Renderer;
 import com.github.tavi.plague.sciacallo.components.TextureMeta;
 import com.github.tavi.plague.shared.Assets;
@@ -12,7 +12,7 @@ import com.github.tavi.plague.shared.components.Transform;
 public class Scene implements Screen {
 	
 	// TEMPORARY --->
-	private Membra components = Membra.get();
+	private Catti components = Catti.get();
 	private Renderer renderer = new Renderer();
 	private Assets assets = Assets.get();
 	// <--- TEMPORARY

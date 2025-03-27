@@ -2,7 +2,7 @@ package com.github.tavi.plague.shared;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.github.tavi.plague.sciacallo.Sarcina;
+import com.github.tavi.plague.sciacallo.Requisitum;
 
 /**
  * The main class to work with textures and other assets
@@ -11,12 +11,12 @@ public interface Assets {
 	
 	/**
 	 * Returns the singleton instance of the currently used Assets implementation.
-	 * As of v1.0.0 ("Sciacallo" version), Sarcina is used
-	 * @see Sarcina
+	 * As of v1.0.0 ("Sciacallo" version), Requisitum is used
+	 * @see Requisitum
 	 * @return Singleton instance of Assets implementation
 	 */
 	public static Assets get() {
-		return Sarcina.get();
+		return Requisitum.get();
 	}
 	
 	/**
