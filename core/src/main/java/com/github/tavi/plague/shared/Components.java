@@ -1,10 +1,17 @@
 package com.github.tavi.plague.shared;
 
+import com.github.tavi.plague.sciacallo.Catti;
+
 /**
  * A storage of all the components, belonging to all the Entities.
  * @see com.github.tavi.plague.sciacallo.Catti
  */
 public interface Components {
+	
+	public static Components get() {
+		return Catti.get();
+	}
+	
 
 	/**
 	 * Adds the specified component to the specified entity <br>
