@@ -1,6 +1,7 @@
 package com.github.tavi.plague;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.sciacallo.Catti;
 import com.github.tavi.plague.sciacallo.Renderer;
@@ -20,9 +21,11 @@ public class Scene implements Screen {
     @Override
     public void show() {
         Transform t = components.register(0, Transform.class, new Transform());
-        //t.x = 50;
-        //t.y = 50;
-        components.register(0, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", 0.5f, 0f));
+        t.x = 50;
+        t.y = 50;
+        components.register(0, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", 0.5f, 0f));
+        components.register(0, Vector3.class, new Vector3(5, 0, 0)); // Currently only rotation
+        
     }
 
     @Override

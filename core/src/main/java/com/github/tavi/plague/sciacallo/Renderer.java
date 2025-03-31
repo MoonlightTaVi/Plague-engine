@@ -2,10 +2,12 @@ package com.github.tavi.plague.sciacallo;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.sciacallo.components.TextureMeta;
 import com.github.tavi.plague.shared.Assets;
+import com.github.tavi.plague.shared.Vectors;
 import com.github.tavi.plague.shared.components.Transform;
-import com.github.tavi.plague.shared.systems.EntityProcessor;
 import com.github.tavi.plague.shared.systems.VisibleProcessor;
 
 public class Renderer implements VisibleProcessor {
@@ -19,6 +21,7 @@ public class Renderer implements VisibleProcessor {
 		Texture texture = null;
 		TextureMeta meta = null;
 		Transform transform = null;
+		Vector3 vector = components.get(entityId, Vector3.class);
 		if ((transform = components.get(entityId, Transform.class)) == null ||
 				(meta = components.get(entityId, TextureMeta.class)) == null ||
 				(texture = assets.texture(meta.path())) == null) {
@@ -27,7 +30,7 @@ public class Renderer implements VisibleProcessor {
 		
 		float scaleX = 1;
 		float scaleY = 1;
-		float rotation = 0;
+		float rotation = vector != null ? Vectors.angle(Vectors.NORTH, new Vector2(vector.x, vector.y)) : 0;
 		boolean flipX = false;
 		boolean flipY = false;
 		
