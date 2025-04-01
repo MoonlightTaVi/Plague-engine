@@ -3,28 +3,38 @@ package com.github.tavi.plague;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.github.tavi.plague.sciacallo.Catti;
 import com.github.tavi.plague.sciacallo.Renderer;
 import com.github.tavi.plague.sciacallo.components.TextureMeta;
 import com.github.tavi.plague.shared.Assets;
+import com.github.tavi.plague.shared.Components;
+import com.github.tavi.plague.shared.Entities;
 import com.github.tavi.plague.shared.components.Transform;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
 public class Scene implements Screen {
 	
 	// TEMPORARY --->
-	private Catti components = Catti.get();
+	private Components components = Components.get();
 	private Renderer renderer = new Renderer();
 	private Assets assets = Assets.get();
+	private Entities entities = Entities.get();
 	// <--- TEMPORARY
 	
     @Override
     public void show() {
-        Transform t = components.register(0, Transform.class, new Transform());
+    	int id = entities.create();
+        Transform t = components.register(id, Transform.class, new Transform());
         t.x = 50;
         t.y = 50;
-        components.register(0, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", 0.5f, 0f));
-        components.register(0, Vector3.class, new Vector3(5, 0, 0)); // Currently only rotation
+        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", 0.5f, 0f));
+        components.register(id, Vector3.class, new Vector3(5, 5, 0)); // Currently only rotation
+        
+        id = entities.create();
+        t = components.register(id, Transform.class, new Transform());
+        t.x = 60;
+        t.y = 70;
+        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", 0.5f, 0f));
+        components.register(id, Vector3.class, new Vector3(5, 5, 0)); // Currently only rotation
         
     }
 
@@ -36,7 +46,8 @@ public class Scene implements Screen {
         
         assets.batch().begin();
         
-        renderer.process(0);
+        entities.stream().forEach(id -> renderer.process(id));
+        //renderer.process(0);
         
         assets.batch().end();
     }
