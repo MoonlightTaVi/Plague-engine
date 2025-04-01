@@ -26,7 +26,9 @@ public class Catti implements Components {
 	public static Catti get() {
 		if (INSTANCE == null) {
 			synchronized (Catti.class) {
-				INSTANCE = new Catti();
+				if (INSTANCE == null) {
+					INSTANCE = new Catti();
+				}
 			}
 		}
 		return INSTANCE;

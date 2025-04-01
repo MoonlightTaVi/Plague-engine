@@ -32,7 +32,9 @@ public class Scriba implements Plogger {
 	public static Scriba get() {
 		if (INSTANCE == null) {
 			synchronized (Scriba.class) {
-				INSTANCE = new Scriba();
+				if (INSTANCE == null) {
+					INSTANCE = new Scriba();
+				}
 			}
 		}
 		return INSTANCE;

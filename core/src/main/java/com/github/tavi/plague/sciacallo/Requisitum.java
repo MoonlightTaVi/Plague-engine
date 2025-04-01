@@ -29,7 +29,9 @@ public class Requisitum implements Assets {
 	public static Requisitum get() {
 		if (INSTANCE == null) {
 			synchronized (Requisitum.class) {
-				INSTANCE = new Requisitum();
+				if (INSTANCE == null) {
+					INSTANCE = new Requisitum();
+				}
 			}
 		}
 		return INSTANCE;
