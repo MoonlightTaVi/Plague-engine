@@ -1,5 +1,7 @@
 package com.github.tavi.plague.shared.components;
 
+import com.badlogic.gdx.math.Vector3;
+
 public class Transform {
 
 	public float x = 0;
@@ -12,6 +14,12 @@ public class Transform {
 	
 	public Transform parent = null;
 	
+	
+	public void set(Vector3 fromVector) {
+		x = fromVector.x;
+		y = fromVector.y;
+		z = fromVector.z;
+	}
 	
 	// ========= TO-DO: Position/rotation relative to parent
 	// (Position also should take parent's rotation, as well as its own rotation, into account)
