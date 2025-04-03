@@ -2,6 +2,7 @@ package com.github.tavi.plague.sciacallo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import com.github.tavi.plague.shared.Components;
 
@@ -77,6 +78,17 @@ public class Catti implements Components {
 			return componentClass.cast(components.get(hash));
 		}
 		return null;
+	}
+
+	@Override
+	public <COMPONENT> COMPONENT getOr(int entity, Class<COMPONENT> componentClass, Supplier<COMPONENT> defaultValue) {
+		COMPONENT result = get(entity, componentClass);
+		
+		if (result == null) {
+			result = register(entity, componentClass, defaultValue.get());
+		}
+		
+		return result;
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package com.github.tavi.plague.shared;
 
+import java.util.function.Supplier;
+
 import com.github.tavi.plague.sciacallo.Catti;
 
 /**
@@ -49,5 +51,8 @@ public interface Components {
 	 * @return The requested component if existent, {@code null} otherwise
 	 */
 	public <COMPONENT> COMPONENT get(int entity, Class<COMPONENT> componentClass);
+	
+	
+	public <COMPONENT> COMPONENT getOr(int entity, Class<COMPONENT> componentClass, Supplier<COMPONENT> defaultValue);
 	
 }

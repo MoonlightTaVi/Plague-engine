@@ -37,4 +37,10 @@ public class Renderer implements VisibleProcessor {
 		batch.draw(texture, transform.x - meta.originX(), transform.y - meta.originY(), meta.originX(), meta.originY(), meta.width(), meta.height(), scaleX, scaleY, rotation, meta.srcX(), meta.srcY(), meta.srcWidth(), meta.srcHeight(), flipX, flipY);
 	}
 
+	@Override
+	public boolean isVisible(int id) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }
