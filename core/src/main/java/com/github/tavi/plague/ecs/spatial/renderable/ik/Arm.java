@@ -1,4 +1,4 @@
-package com.github.tavi.plague.sciacallo.components.skeleton;
+package com.github.tavi.plague.ecs.spatial.renderable.ik;
 
 public class Arm {
 	

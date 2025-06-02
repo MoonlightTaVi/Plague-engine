@@ -1,3 +1,6 @@
+## PMD (Eclipse plugin)
+**/**/*.pmd
+
 ## Gradle:
 .gradle/
 gradle-app.setting

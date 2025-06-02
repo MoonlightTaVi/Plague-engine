@@ -1,4 +1,4 @@
-package com.github.tavi.plague.shared.systems;
+package com.github.tavi.plague.ecs;
 
 /**
  * Entity-Component system, applicable to the in-game Entities. <br>
@@ -6,7 +6,7 @@ package com.github.tavi.plague.shared.systems;
  * {@code Entity Manager} s also provide methods for tagging objects with
  * different types.
  */
-public interface EntityProcessor {
+public interface System {
 
 	/**
 	 * The method contains all the logic, applied to an Entity

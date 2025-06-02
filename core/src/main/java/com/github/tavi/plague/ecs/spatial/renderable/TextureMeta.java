@@ -1,7 +1,7 @@
-package com.github.tavi.plague.sciacallo.components;
+package com.github.tavi.plague.ecs.spatial.renderable;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.github.tavi.plague.shared.Assets;
+import com.github.tavi.plague.util.io.Assets;
 
 /**
  * The record contains all the static information needed in order to render a Texture on the screen. <br>

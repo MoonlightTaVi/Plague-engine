@@ -1,4 +1,4 @@
-package com.github.tavi.plague.shared.components;
+package com.github.tavi.plague.ecs.spatial;
 
 import com.badlogic.gdx.math.Vector3;
 

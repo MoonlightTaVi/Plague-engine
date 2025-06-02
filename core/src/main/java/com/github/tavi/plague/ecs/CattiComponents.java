@@ -1,10 +1,8 @@
-package com.github.tavi.plague.sciacallo;
+package com.github.tavi.plague.ecs;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-
-import com.github.tavi.plague.shared.Components;
 
 /**
  * The {@code Sciacallo} version of the Components. <br>
@@ -15,20 +13,20 @@ import com.github.tavi.plague.shared.Components;
  * it is possible to iterate through all the components of all entities, though
  * (which may hurt performance very much).
  */
-public class Catti implements Components {
+public class CattiComponents implements Components {
 	
-	private static volatile Catti INSTANCE = null;
+	private static volatile CattiComponents INSTANCE = null;
 	
 	/**
-	 * Get a singleton instance of the {@code Catti} class
-	 * @return Catti singleton
+	 * Get a singleton instance of the {@code CattiComponents} class
+	 * @return CattiComponents singleton
 	 * @see Components
 	 */
-	public static Catti get() {
+	public static CattiComponents get() {
 		if (INSTANCE == null) {
-			synchronized (Catti.class) {
+			synchronized (CattiComponents.class) {
 				if (INSTANCE == null) {
-					INSTANCE = new Catti();
+					INSTANCE = new CattiComponents();
 				}
 			}
 		}

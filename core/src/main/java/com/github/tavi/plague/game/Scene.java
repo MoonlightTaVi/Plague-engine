@@ -1,26 +1,26 @@
-package com.github.tavi.plague;
+package com.github.tavi.plague.game;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.github.tavi.plague.sciacallo.FABRIK;
-import com.github.tavi.plague.sciacallo.Renderer;
-import com.github.tavi.plague.sciacallo.components.TextureMeta;
-import com.github.tavi.plague.sciacallo.components.skeleton.Arm;
-import com.github.tavi.plague.sciacallo.components.skeleton.Skelly;
-import com.github.tavi.plague.shared.Assets;
-import com.github.tavi.plague.shared.Components;
-import com.github.tavi.plague.shared.Entities;
-import com.github.tavi.plague.shared.components.Transform;
-import com.github.tavi.plague.shared.systems.VisibleProcessor;
+import com.github.tavi.plague.ecs.Components;
+import com.github.tavi.plague.ecs.Entities;
+import com.github.tavi.plague.ecs.spatial.Transform;
+import com.github.tavi.plague.ecs.spatial.renderable.Renderer;
+import com.github.tavi.plague.ecs.spatial.renderable.TextureMeta;
+import com.github.tavi.plague.ecs.spatial.renderable.VisibleSystem;
+import com.github.tavi.plague.ecs.spatial.renderable.ik.Arm;
+import com.github.tavi.plague.ecs.spatial.renderable.ik.FABRIK;
+import com.github.tavi.plague.ecs.spatial.renderable.ik.Skelly;
+import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
 public class Scene implements Screen {
 	
 	// TEMPORARY --->
 	private Components components = Components.get();
-	private VisibleProcessor renderer = new Renderer();
-	private VisibleProcessor ik = new FABRIK();
+	private VisibleSystem renderer = new Renderer();
+	private VisibleSystem ik = new FABRIK();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
 	// <--- TEMPORARY

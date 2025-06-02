@@ -1,4 +1,4 @@
-package com.github.tavi.plague.shared;
+package com.github.tavi.plague.util;
 
 import com.badlogic.gdx.math.Vector2;
 

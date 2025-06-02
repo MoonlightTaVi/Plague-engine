@@ -1,15 +1,12 @@
-package com.github.tavi.plague.sciacallo;
-
-import java.util.Arrays;
+package com.github.tavi.plague.ecs.spatial.renderable.ik;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
-import com.github.tavi.plague.sciacallo.components.skeleton.Skelly;
-import com.github.tavi.plague.shared.Components;
-import com.github.tavi.plague.shared.components.Transform;
-import com.github.tavi.plague.shared.systems.VisibleProcessor;
+import com.github.tavi.plague.ecs.Components;
+import com.github.tavi.plague.ecs.spatial.Transform;
+import com.github.tavi.plague.ecs.spatial.renderable.VisibleSystem;
 
-public class FABRIK implements VisibleProcessor {
+public class FABRIK implements VisibleSystem {
 	
 	private float error = 0.1f;
 	

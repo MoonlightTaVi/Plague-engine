@@ -1,6 +1,6 @@
-package com.github.tavi.plague.sciacallo.components.skeleton;
+package com.github.tavi.plague.ecs.spatial.renderable.ik;
 
-import com.github.tavi.plague.sciacallo.components.Rotation;
+import com.github.tavi.plague.ecs.spatial.Rotation;
 
 public class Skelly {
 	

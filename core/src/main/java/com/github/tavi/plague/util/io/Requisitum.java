@@ -1,4 +1,4 @@
-package com.github.tavi.plague.sciacallo;
+package com.github.tavi.plague.util.io;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -10,8 +10,7 @@ import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.github.tavi.plague.shared.Plogger;
-import com.github.tavi.plague.shared.Assets;
+import com.github.tavi.plague.util.logging.Plogger;
 
 /**
  * The "Sciacallo" version of the Assets. <br>

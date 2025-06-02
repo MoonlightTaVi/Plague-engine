@@ -1,4 +1,4 @@
-package com.github.tavi.plague;
+package com.github.tavi.plague.game;
 
 import com.badlogic.gdx.Game;
 

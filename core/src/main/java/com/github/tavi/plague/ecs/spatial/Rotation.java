@@ -1,6 +1,6 @@
-package com.github.tavi.plague.sciacallo.components;
+package com.github.tavi.plague.ecs.spatial;
 
-import com.github.tavi.plague.shared.Vectors;
+import com.github.tavi.plague.util.Vectors;
 
 public record Rotation(float[] axes) {
 	

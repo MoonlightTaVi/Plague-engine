@@ -1,20 +1,19 @@
-package com.github.tavi.plague.sciacallo;
+package com.github.tavi.plague.ecs.spatial.renderable;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.github.tavi.plague.sciacallo.components.TextureMeta;
-import com.github.tavi.plague.shared.Assets;
-import com.github.tavi.plague.shared.Vectors;
-import com.github.tavi.plague.shared.components.Transform;
-import com.github.tavi.plague.shared.systems.VisibleProcessor;
+import com.github.tavi.plague.ecs.CattiComponents;
+import com.github.tavi.plague.ecs.spatial.Transform;
+import com.github.tavi.plague.util.Vectors;
+import com.github.tavi.plague.util.io.Assets;
 
-public class Renderer implements VisibleProcessor {
+public class Renderer implements VisibleSystem {
 	
 	private Assets assets = Assets.get();
 	private SpriteBatch batch = assets.batch();
-	private Catti components = Catti.get();
+	private CattiComponents components = CattiComponents.get();
 
 	@Override
 	public void process(int entityId) {

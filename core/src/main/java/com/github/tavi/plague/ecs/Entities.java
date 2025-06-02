@@ -1,14 +1,12 @@
-package com.github.tavi.plague.shared;
+package com.github.tavi.plague.ecs;
 
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-import com.github.tavi.plague.sciacallo.Verberones;
-
 public interface Entities {
 	
 	public static Entities get() {
-		return Verberones.get();
+		return SciacalloEntities.get();
 	}
 	
 	public int create();

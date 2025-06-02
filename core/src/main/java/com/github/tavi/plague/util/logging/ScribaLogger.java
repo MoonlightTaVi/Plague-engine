@@ -1,4 +1,4 @@
-package com.github.tavi.plague.sciacallo;
+package com.github.tavi.plague.util.logging;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -11,7 +11,6 @@ import java.util.List;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.github.tavi.plague.shared.Plogger;
 
 /**
  * The "Sciacallo" version of Plogger.
@@ -19,21 +18,21 @@ import com.github.tavi.plague.shared.Plogger;
  * at the same time logging to the console. All logging levels are on by default.
  * @see Plogger
  */
-public class Scriba implements Plogger {
+public class ScribaLogger implements Plogger {
 	
-	private static volatile Scriba INSTANCE = null;
+	private static volatile ScribaLogger INSTANCE = null;
 	
 	/**
-	 * Get a singleton instance of the Scriba logger
-	 * @return Scriba logger singleton
+	 * Get a singleton instance of the ScribaLogger logger
+	 * @return ScribaLogger logger singleton
 	 * @see Plogger
-	 * @see Scriba
+	 * @see ScribaLogger
 	 */
-	public static Scriba get() {
+	public static ScribaLogger get() {
 		if (INSTANCE == null) {
-			synchronized (Scriba.class) {
+			synchronized (ScribaLogger.class) {
 				if (INSTANCE == null) {
-					INSTANCE = new Scriba();
+					INSTANCE = new ScribaLogger();
 				}
 			}
 		}
@@ -47,10 +46,10 @@ public class Scriba implements Plogger {
 	private FileHandle fh;
 	
 	/**
-	 * Creates a Scriba logger instance, also creating a new .log file and deleting the old ones,
+	 * Creates a ScribaLogger logger instance, also creating a new .log file and deleting the old ones,
 	 * if there are more than 3 of them.
 	 */
-	private Scriba() {
+	private ScribaLogger() {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
 		Date date = new Date();

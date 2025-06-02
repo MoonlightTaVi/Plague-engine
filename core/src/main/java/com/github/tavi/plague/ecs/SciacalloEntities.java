@@ -1,4 +1,4 @@
-package com.github.tavi.plague.sciacallo;
+package com.github.tavi.plague.ecs;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,17 +9,15 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.github.tavi.plague.shared.Entities;
-
-public class Verberones implements Entities {
+public class SciacalloEntities implements Entities {
 	
 	private static volatile Entities INSTANCE = null;
 	
 	public static Entities get() {
 		if (INSTANCE == null) {
-			synchronized (Verberones.class) {
+			synchronized (SciacalloEntities.class) {
 				if (INSTANCE == null) {
-					INSTANCE = new Verberones();
+					INSTANCE = new SciacalloEntities();
 				}
 			}
 		}

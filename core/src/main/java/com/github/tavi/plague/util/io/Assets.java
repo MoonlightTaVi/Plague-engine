@@ -1,8 +1,7 @@
-package com.github.tavi.plague.shared;
+package com.github.tavi.plague.util.io;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.github.tavi.plague.sciacallo.Requisitum;
 
 /**
  * The main class to work with textures and other assets

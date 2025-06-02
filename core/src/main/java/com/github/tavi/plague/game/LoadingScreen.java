@@ -1,11 +1,11 @@
-package com.github.tavi.plague;
+package com.github.tavi.plague.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.github.tavi.plague.shared.Assets;
+import com.github.tavi.plague.util.io.Assets;
 
 public class LoadingScreen implements Screen {
 	

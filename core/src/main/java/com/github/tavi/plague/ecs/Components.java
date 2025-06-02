@@ -1,17 +1,15 @@
-package com.github.tavi.plague.shared;
+package com.github.tavi.plague.ecs;
 
 import java.util.function.Supplier;
 
-import com.github.tavi.plague.sciacallo.Catti;
-
 /**
  * A storage of all the components, belonging to all the Entities.
- * @see com.github.tavi.plague.sciacallo.Catti
+ * @see com.github.tavi.plague.ecs.CattiComponents
  */
 public interface Components {
 	
 	public static Components get() {
-		return Catti.get();
+		return CattiComponents.get();
 	}
 	
 

@@ -1,6 +1,6 @@
 package com.github.tavi.plague.testing;
 
-import com.github.tavi.plague.shared.Plogger;
+import com.github.tavi.plague.util.logging.Plogger;
 
 /**
  * This thread logs three messages in a row to a file (and a console)
