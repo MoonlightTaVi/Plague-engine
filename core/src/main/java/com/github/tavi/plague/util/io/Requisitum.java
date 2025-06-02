@@ -53,7 +53,7 @@ public class Requisitum implements Assets {
 	private Requisitum() {
 		textureParam.minFilter = Texture.TextureFilter.Nearest;
 		
-		iterate(Gdx.files.internal("textures/"));
+		iterate(Gdx.files.internal("textures"));
 	}
 	
 	/**
@@ -61,11 +61,11 @@ public class Requisitum implements Assets {
 	 * @param directory The folder to scan for assets
 	 */
 	private void iterate(FileHandle directory) {
-		
 		FileHandle[] items = directory.list();
+		log.info(this, "Loading textures...");
 		
 		for (FileHandle item : items) {
-			
+			log.info(this, item.path());
 			if (item.extension().equals("png")) {
 				log.info(this, "Found texture:", item.path());
 				assets.load(item.path(), Texture.class, textureParam);

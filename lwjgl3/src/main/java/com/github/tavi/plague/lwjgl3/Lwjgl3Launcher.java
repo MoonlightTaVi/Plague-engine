@@ -2,7 +2,7 @@ package com.github.tavi.plague.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.github.tavi.plague.EntryPoint;
+import com.github.tavi.plague.game.EntryPoint;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
