@@ -71,12 +71,12 @@ public class FABRIK {
 		lengths[0] = 0f;
 		armLength = 0f;
 		for (int i = 1; i < chainSize; i++) {
-			BoneVector vector = null;
-			if ((vector = components.get(armIds[i - 1], BoneVector.class)) == null) {
+			DirectionalVector vector = null;
+			if ((vector = components.get(armIds[i - 1], DirectionalVector.class)) == null) {
 				throw new IllegalStateException(
 						String.format(
 								"Entity with ID %s does not have a %s property, but is forced into processing by IK",
-								BoneVector.class.getName(),
+								DirectionalVector.class.getName(),
 								armIds[i]
 										)
 						);

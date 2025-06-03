@@ -1,11 +1,10 @@
 package com.github.tavi.plague.game;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.ecs.behaviour.MovementState;
-import com.github.tavi.plague.ecs.spatial.Transform;
+import com.github.tavi.plague.ecs.spatial.*;
 import com.github.tavi.plague.ecs.spatial.renderable.*;
 import com.github.tavi.plague.ecs.spatial.renderable.ik.*;
 import com.github.tavi.plague.util.io.Assets;
@@ -16,6 +15,7 @@ public class Scene implements Screen {
 	// TEMPORARY --->
 	private Components components = Components.get();
 	private VisibleSystem renderer = new Renderer();
+	private VisibleSystem rotationSystem = new RotationSystem();
 	private VisibleSystem limbMovement = new LimbMovementSystem();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
@@ -35,14 +35,11 @@ public class Scene implements Screen {
         
         id = spine.push(entities.create());
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", 0.5f, 0f));
-        components.register(id, BoneVector.class, new BoneVector(0, 0, 18));
+        components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 18));
         
         id = spine.push(entities.create());
-        //t = components.register(id, Transform.class, new Transform());
-        //t.x = 60;
-        //t.y = 70;
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", 0.5f, 0f));
-        components.register(id, BoneVector.class, new BoneVector(0, 0, 29));
+        components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 29));
         
         
         
@@ -52,13 +49,13 @@ public class Scene implements Screen {
     @Override
     public void render(float delta) {
     	ScreenUtils.clear(0, 0, 0, 1);
-    	
-    	//components.get(0, Transform.class).x += 5 * delta;
         
         assets.batch().begin();
         
-        entities.stream().peek(id -> limbMovement.process(id)).forEach(id -> renderer.process(id));
-        //renderer.process(0);
+        entities.stream()
+        .peek(id -> rotationSystem.process(id))
+        .peek(id -> limbMovement.process(id))
+        .forEach(id -> renderer.process(id));
         
         assets.batch().end();
     }
