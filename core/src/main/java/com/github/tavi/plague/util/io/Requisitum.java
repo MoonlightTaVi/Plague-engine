@@ -67,7 +67,6 @@ public class Requisitum implements Assets {
 		for (FileHandle item : items) {
 			log.info(this, item.path());
 			if (item.extension().equals("png")) {
-				log.info(this, "Found texture:", item.path());
 				assets.load(item.path(), Texture.class, textureParam);
 			} else if (item.isDirectory()) {
 				iterate(item);

@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.CattiComponents;
 import com.github.tavi.plague.ecs.spatial.Transform;
+import com.github.tavi.plague.ecs.spatial.renderable.ik.BoneVector;
 import com.github.tavi.plague.util.Vectors;
 import com.github.tavi.plague.util.io.Assets;
 
@@ -20,7 +21,7 @@ public class Renderer implements VisibleSystem {
 		Texture texture = null;
 		TextureMeta meta = null;
 		Transform transform = null;
-		Vector3 vector = components.get(entityId, Vector3.class);
+		BoneVector vector = components.get(entityId, BoneVector.class);
 		if ((transform = components.get(entityId, Transform.class)) == null ||
 				(meta = components.get(entityId, TextureMeta.class)) == null ||
 				(texture = assets.texture(meta.path())) == null) {
@@ -29,7 +30,7 @@ public class Renderer implements VisibleSystem {
 		
 		float scaleX = 1;
 		float scaleY = 1;
-		float rotation = vector != null ? Vectors.angle(Vectors.NORTH, new Vector2(vector.x, vector.y)) : 0;
+		float rotation = vector != null ? Vectors.angle(new Vector2(vector.original().x, vector.original().y), new Vector2(vector.current().x, vector.current().y)) : 0;
 		boolean flipX = false;
 		boolean flipY = false;
 		

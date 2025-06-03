@@ -3,15 +3,11 @@ package com.github.tavi.plague.game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.github.tavi.plague.ecs.Components;
-import com.github.tavi.plague.ecs.Entities;
+import com.github.tavi.plague.ecs.*;
+import com.github.tavi.plague.ecs.behaviour.MovementState;
 import com.github.tavi.plague.ecs.spatial.Transform;
-import com.github.tavi.plague.ecs.spatial.renderable.Renderer;
-import com.github.tavi.plague.ecs.spatial.renderable.TextureMeta;
-import com.github.tavi.plague.ecs.spatial.renderable.VisibleSystem;
-import com.github.tavi.plague.ecs.spatial.renderable.ik.Arm;
-import com.github.tavi.plague.ecs.spatial.renderable.ik.FABRIK;
-import com.github.tavi.plague.ecs.spatial.renderable.ik.Skelly;
+import com.github.tavi.plague.ecs.spatial.renderable.*;
+import com.github.tavi.plague.ecs.spatial.renderable.ik.*;
 import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
@@ -20,30 +16,33 @@ public class Scene implements Screen {
 	// TEMPORARY --->
 	private Components components = Components.get();
 	private VisibleSystem renderer = new Renderer();
-	private VisibleSystem ik = new FABRIK();
+	private VisibleSystem limbMovement = new LimbMovementSystem();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
 	// <--- TEMPORARY
 	
     @Override
     public void show() {
+    	LimbMovementStrategy.setupStrategies();
+    	
     	int id = entities.create();
         Transform t = components.register(id, Transform.class, new Transform());
+        components.register(id, MovementState.class, MovementState.DANCING);
         t.x = 50;
         t.y = 50;
-        Skelly skelly = components.register(id, new Skelly());
-        skelly.spine = new Arm(2);
+        Skelly skelly = components.register(id, new Skelly(Skelly.Type.HUMAN));
+        Arm spine = skelly.growArm(Arm.Type.SPINE, 2);
         
-        id = skelly.spine.push(entities.create());
+        id = spine.push(entities.create());
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", 0.5f, 0f));
-        components.register(id, Vector3.class, new Vector3(0, 18, 0));
+        components.register(id, BoneVector.class, new BoneVector(0, 18, 0));
         
-        id = skelly.spine.push(entities.create());
+        id = spine.push(entities.create());
         //t = components.register(id, Transform.class, new Transform());
         //t.x = 60;
         //t.y = 70;
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", 0.5f, 0f));
-        components.register(id, Vector3.class, new Vector3(0, 29, 0));
+        components.register(id, BoneVector.class, new BoneVector(0, 29, 0));
         
         
         
@@ -58,7 +57,7 @@ public class Scene implements Screen {
         
         assets.batch().begin();
         
-        entities.stream().peek(id -> ik.process(id)).forEach(id -> renderer.process(id));;
+        entities.stream().peek(id -> limbMovement.process(id)).forEach(id -> renderer.process(id));;
         //renderer.process(0);
         
         assets.batch().end();

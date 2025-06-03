@@ -18,4 +18,8 @@ public class Arm {
 		return id;
 	}
 	
+	public enum Type {
+		SPINE, LARM, LLEG, RARM, RLEG
+	}
+	
 }
