@@ -35,14 +35,14 @@ public class Scene implements Screen {
         
         id = spine.push(entities.create());
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", 0.5f, 0f));
-        components.register(id, BoneVector.class, new BoneVector(0, 18, 0));
+        components.register(id, BoneVector.class, new BoneVector(0, 0, 18));
         
         id = spine.push(entities.create());
         //t = components.register(id, Transform.class, new Transform());
         //t.x = 60;
         //t.y = 70;
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", 0.5f, 0f));
-        components.register(id, BoneVector.class, new BoneVector(0, 29, 0));
+        components.register(id, BoneVector.class, new BoneVector(0, 0, 29));
         
         
         
@@ -57,7 +57,7 @@ public class Scene implements Screen {
         
         assets.batch().begin();
         
-        entities.stream().peek(id -> limbMovement.process(id)).forEach(id -> renderer.process(id));;
+        entities.stream().peek(id -> limbMovement.process(id)).forEach(id -> renderer.process(id));
         //renderer.process(0);
         
         assets.batch().end();

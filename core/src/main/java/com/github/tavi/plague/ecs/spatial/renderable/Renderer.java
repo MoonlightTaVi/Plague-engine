@@ -30,11 +30,12 @@ public class Renderer implements VisibleSystem {
 		
 		float scaleX = 1;
 		float scaleY = 1;
-		float rotation = vector != null ? Vectors.angle(new Vector2(vector.original().x, vector.original().y), new Vector2(vector.current().x, vector.current().y)) : 0;
+		float rotation = vector != null ? Vectors.angle(new Vector2(vector.original().x, vector.original().z), new Vector2(vector.current().x, vector.current().z)) : 0;
+		
 		boolean flipX = false;
 		boolean flipY = false;
 		
-		batch.draw(texture, transform.x - meta.originX(), transform.y - meta.originY(), meta.originX(), meta.originY(), meta.width(), meta.height(), scaleX, scaleY, rotation, meta.srcX(), meta.srcY(), meta.srcWidth(), meta.srcHeight(), flipX, flipY);
+		batch.draw(texture, transform.x - meta.originX(), transform.y + transform.z - meta.originY(), meta.originX(), meta.originY(), meta.width(), meta.height(), scaleX, scaleY, rotation, meta.srcX(), meta.srcY(), meta.srcWidth(), meta.srcHeight(), flipX, flipY);
 	}
 
 	@Override

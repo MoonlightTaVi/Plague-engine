@@ -19,7 +19,11 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 			Arm arm) {
 		if (armType != Type.SPINE)
 			return null;
-		return new Vector3(Gdx.input.getX(), Gdx.graphics.getHeight() - 1 - Gdx.input.getY(), 0);
+		return new Vector3(
+				Gdx.input.getX(),  // X is the same
+				50, // 50px away from camera
+				Gdx.graphics.getHeight() - 1 - Gdx.input.getY() - 50 // Find cursor Y position, then subtract "false" 50px of Y
+				);
 	}
 
 }
