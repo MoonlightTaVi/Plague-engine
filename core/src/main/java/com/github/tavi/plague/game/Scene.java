@@ -2,6 +2,8 @@ package com.github.tavi.plague.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.ecs.behaviour.MovementState;
@@ -21,6 +23,8 @@ public class Scene implements Screen {
 	private VisibleSystem limbMovement = new LimbMovementSystem();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
+	
+	private Vector2 cursor = new Vector2();
 	// <--- TEMPORARY
 	
     @Override
@@ -57,7 +61,8 @@ public class Scene implements Screen {
 
     @Override
     public void render(float delta) {
-    	Gdx.graphics.setTitle(String.format("Plague Engine [%dFPS]", Gdx.graphics.getFramesPerSecond()));
+    	cursor.set(Gdx.input.getX(), Gdx.graphics.getHeight() - 1 - Gdx.input.getY());
+    	Gdx.graphics.setTitle(String.format("Plague Engine [%dFPS] %s", Gdx.graphics.getFramesPerSecond(), cursor));
     	ScreenUtils.clear(0, 0, 0, 1);
         
         assets.batch().begin();
