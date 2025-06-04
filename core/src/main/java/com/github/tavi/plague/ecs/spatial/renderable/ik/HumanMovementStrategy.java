@@ -6,7 +6,8 @@ import com.github.tavi.plague.ecs.behaviour.MovementState;
 import com.github.tavi.plague.ecs.spatial.renderable.ik.Arm.Type;
 
 public class HumanMovementStrategy implements LimbMovementStrategy {
-
+	private final Vector3 target = new Vector3();
+	
 	/**
 	 * PLACEHOLDER 
 	 * @return World mouse cursor position for spine, null otherwise
@@ -16,14 +17,51 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 			Vector3 baseOrigin,
 			MovementState movementState,
 			Type armType,
-			Arm arm) {
-		if (armType != Type.SPINE)
-			return null;
-		return new Vector3(
-				Gdx.input.getX(),  // X is the same
-				50, // 50px away from camera
-				Gdx.graphics.getHeight() - 1 - Gdx.input.getY() - 50 // Find cursor Y position, then subtract "false" 50px of Y
-				);
+			Arm arm,
+			float time
+			) {
+		switch (movementState) {
+		case DANCING:
+			
+			switch (armType) {
+			case SPINE:
+				return danceSpine(baseOrigin, arm, time);
+			default:
+				break;
+			}
+			
+			default:
+				return followMouse(baseOrigin);
+		}
 	}
-
+	
+	private Vector3 danceSpine(
+			Vector3 baseOrigin,
+			Arm arm,
+			float time
+			) {
+		float[][] frames = new float[][] {
+			{ 0, 0, 1 },
+			{ .2f, 0, .95f },
+			{ .225f, 0, .9f },
+			{ .2f, 0, .95f },
+			{ 0, 0, 1 },
+			{ -.2f, 0, .95f },
+			{ -.225f, 0, .9f },
+			{ -.2f, 0, .95f },
+		};
+		time = (time * 3f) % frames.length;
+		int frame = (int) (time);
+		target.set(frames[frame]);
+		return target;
+	}
+	
+	private Vector3 followMouse(Vector3 baseOrigin) {
+		return new Vector3(
+				Gdx.input.getX(),
+				baseOrigin.y,
+				Gdx.graphics.getHeight() - 1 - Gdx.input.getY() - baseOrigin.y // Find cursor Y position, then subtract "false" 50px of Y
+				)
+				.sub(baseOrigin);
+	}
 }

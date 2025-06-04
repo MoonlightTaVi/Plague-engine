@@ -15,6 +15,12 @@ public interface LimbMovementStrategy {
 		return strategies.get(skellyType);
 	}
 
-	public Vector3 calculateTargetPosition(Vector3 baseOrigin, MovementState movementState, Arm.Type armType, Arm arm);
+	public Vector3 calculateTargetPosition(
+			Vector3 baseOrigin, 
+			MovementState movementState, 
+			Arm.Type armType, 
+			Arm arm, 
+			float time
+			);
 	
 }

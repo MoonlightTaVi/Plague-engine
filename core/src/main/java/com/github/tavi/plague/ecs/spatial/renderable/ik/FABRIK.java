@@ -46,12 +46,18 @@ public class FABRIK {
 	 * A simple all-in-one method for FABRIK calculation.
 	 * @param armIds IDs of the Entities, which represent bones 
 	 * (must have a {@link TextureMeta} Component).
-	 * @param baseOrigin From where the Arm begins (its rotation pivot).
+	 * @param baseOrigin From where the Arm begins (its rotation pivot and origin).
 	 * @param target The position the Arm is trying to reach.
+	 * It should be centered at {@code (0;0;0)} and have the {@code len()}
+	 *  below {@code 1f} (because it's multiplied by Arm's length during
+	 *  FABRIK computations, and then baseOrigin is added to it). <br>
+	 *  It makes it easier to find the target before calling this method
+	 *  without knowing the Arm's length and origin.
 	 */
 	public void process(int[] armIds, Vector3 baseOrigin, Vector3 target) {
 		setup(armIds);
 		prepareData(baseOrigin);
+		target.scl(armLength).add(baseOrigin);
 		reach(target);
 		updateTexturePositions();
 		resetData();
@@ -145,7 +151,11 @@ public class FABRIK {
 	 */
 	private void reach(Vector3 target) {
 		if (positions[0].dst(target) > armLength) {
-			return;
+			target.set(new Vector3(target)
+					.sub(positions[0])
+					.scl(armLength)
+					.add(positions[0])
+					);
 		}
 		
 		for (int i = 0; i < 1000 && !inMarginOfError(target); i++) {

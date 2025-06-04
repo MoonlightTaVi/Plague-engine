@@ -9,28 +9,27 @@ import com.github.tavi.plague.ecs.spatial.renderable.VisibleSystem;
 public class LimbMovementSystem implements VisibleSystem {
 	private Components components = Components.get();
 	private FABRIK ik = new FABRIK(0.1f);
+	private final Vector3 baseOrigin = new Vector3();
 	
 	@Override
 	public void process(int entityId, float delta) {
 		Skelly skelly;
 		MovementState state;
+		Transform transform = null;
 		if (
 				(skelly = components.get(entityId, Skelly.class)) == null ||
+				(transform = components.get(entityId, Transform.class)) == null ||
 				(state = components.get(entityId, MovementState.class)) == null
 				) {
 			return;
 		}
 		LimbMovementStrategy strategy = LimbMovementStrategy.get(skelly.type);
+		baseOrigin.set(transform.x, transform.y, transform.z);
 		
-		Transform t = components.get(entityId, Transform.class);
-		Vector3 baseOrigin = new Vector3();
-		if (t != null) {
-			baseOrigin.set(t.x, t.y, t.z);
-		}
-		
+		skelly.time += delta;
 		for (Arm.Type armType : skelly.arms()) {
 			Arm arm = skelly.get(armType);
-			Vector3 target = strategy.calculateTargetPosition(baseOrigin, state, armType, arm);
+			Vector3 target = strategy.calculateTargetPosition(baseOrigin, state, armType, arm, skelly.time);
 			ik.process(arm.IDs, baseOrigin, target);
 		}
 	}

@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Skelly {
 	public Type type;
+	public float time = 0f;
 	
 	private Map<Arm.Type, Arm> arms = new HashMap<>();
 	
