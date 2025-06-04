@@ -30,9 +30,11 @@ public class LimbMovementSystem implements VisibleSystem {
 		for (Arm.Type armType : skelly.arms()) {
 			Arm arm = skelly.get(armType);
 			Vector3 target = strategy.calculateTargetPosition(baseOrigin, state, armType, arm, skelly.time);
-			if (target != null) {
-				ik.process(arm.IDs, baseOrigin, target);
+			Transform armTransform = components.get(arm.IDs[0], Transform.class);
+			if (armTransform != null) {
+				baseOrigin.set(armTransform.worldPosition);
 			}
+			ik.process(arm.IDs, baseOrigin, target);
 		}
 	}
 

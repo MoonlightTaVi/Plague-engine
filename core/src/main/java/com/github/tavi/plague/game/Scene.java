@@ -1,5 +1,6 @@
 package com.github.tavi.plague.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.ecs.*;
@@ -42,25 +43,29 @@ public class Scene implements Screen {
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 29));
 
-        Arm rArm = skelly.growArm(Arm.Type.RARM, 1);
+        Arm rArm = skelly.growArm(Arm.Type.RARM, 2);
         id = rArm.push(entities.create());
         components.register(id, Transform.class, new Transform(-10, 0, 20)).parent = trTorso;
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_upper_arm_0.png", TextureMeta.NORTH_EAST));
-        components.register(id, DirectionalVector.class, new DirectionalVector(-8, 0, -15));
+        components.register(id, DirectionalVector.class, new DirectionalVector(-6, 0, -15));
+        id = rArm.push(entities.create());
+        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_lower_arm_0.png", TextureMeta.NORTH));
+        components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -10));
         
         
     }
 
     @Override
     public void render(float delta) {
+    	Gdx.graphics.setTitle(String.format("Plague Engine [%dFPS]", Gdx.graphics.getFramesPerSecond()));
     	ScreenUtils.clear(0, 0, 0, 1);
         
         assets.batch().begin();
         
         entities.stream()
+        .peek(id -> limbMovement.process(id, delta))
         .peek(id -> hierarchySystem.process(id, delta))
         .peek(id -> rotationSystem.process(id, delta))
-        .peek(id -> limbMovement.process(id, delta))
         .forEach(id -> renderer.process(id, delta));
         
         assets.batch().end();

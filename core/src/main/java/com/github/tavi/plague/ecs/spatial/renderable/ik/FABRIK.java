@@ -57,8 +57,10 @@ public class FABRIK {
 	public void process(int[] armIds, Vector3 baseOrigin, Vector3 target) {
 		setup(armIds);
 		prepareData(baseOrigin);
-		target.scl(armLength).add(baseOrigin);
-		reach(target);
+		if (target != null) {
+			target.scl(armLength).add(baseOrigin);
+			reach(target);
+		}
 		updateTexturePositions();
 		resetData();
 	}
