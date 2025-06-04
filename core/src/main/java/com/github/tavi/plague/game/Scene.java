@@ -15,7 +15,8 @@ public class Scene implements Screen {
 	// TEMPORARY --->
 	private Components components = Components.get();
 	private VisibleSystem renderer = new Renderer();
-	private VisibleSystem rotationSystem = new RotationSystem();
+	private VisibleSystem hierarchySystem = new VisibleHierarchySystem();
+	private VisibleSystem rotationSystem = new TextureRotationSystem();
 	private VisibleSystem limbMovement = new LimbMovementSystem();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
@@ -28,8 +29,7 @@ public class Scene implements Screen {
     	int id = entities.create();
         Transform t = components.register(id, Transform.class, new Transform());
         components.register(id, MovementState.class, MovementState.DANCING);
-        t.x = 50;
-        t.y = 50;
+        t.setWorldPosition(50, 50, 0);
         Skelly skelly = components.register(id, new Skelly(Skelly.Type.HUMAN));
         Arm spine = skelly.growArm(Arm.Type.SPINE, 2);
         
@@ -58,6 +58,7 @@ public class Scene implements Screen {
         assets.batch().begin();
         
         entities.stream()
+        .peek(id -> hierarchySystem.process(id, delta))
         .peek(id -> rotationSystem.process(id, delta))
         .peek(id -> limbMovement.process(id, delta))
         .forEach(id -> renderer.process(id, delta));

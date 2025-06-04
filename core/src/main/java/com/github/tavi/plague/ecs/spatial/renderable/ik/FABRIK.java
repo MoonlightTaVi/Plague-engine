@@ -117,7 +117,7 @@ public class FABRIK {
 	 */
 	public void updateTexturePositions() {
 		for (int i = 0; i < armIds.length; i++) {
-			components.getOr(armIds[i], Transform.class, () -> new Transform()).set(positions[i]);
+			components.getOr(armIds[i], Transform.class, () -> new Transform()).setWorldPosition(positions[i]);
 		}
 	}
 	

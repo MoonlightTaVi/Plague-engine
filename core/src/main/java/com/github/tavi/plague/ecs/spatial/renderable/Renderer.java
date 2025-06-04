@@ -2,6 +2,7 @@ package com.github.tavi.plague.ecs.spatial.renderable;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.Components;
 import com.github.tavi.plague.ecs.spatial.Transform;
 import com.github.tavi.plague.util.io.Assets;
@@ -23,9 +24,10 @@ public class Renderer implements VisibleSystem {
 			return;
 		}
 		
-		float x = transform.x();
-		float y = transform.y();
-		float z = transform.z();
+		Vector3 worldPosition = transform.worldPosition;
+		float x = worldPosition.x;
+		float y = worldPosition.y;
+		float z = worldPosition.z;
 		float scaleX = 1;
 		float scaleY = 1;
 		float rotation = transform.rotationY;

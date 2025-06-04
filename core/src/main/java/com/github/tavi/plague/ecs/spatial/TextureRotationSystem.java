@@ -6,7 +6,7 @@ import com.github.tavi.plague.ecs.spatial.renderable.VisibleSystem;
 import com.github.tavi.plague.ecs.spatial.renderable.ik.DirectionalVector;
 import com.github.tavi.plague.util.Vectors;
 
-public class RotationSystem implements VisibleSystem {
+public class TextureRotationSystem implements VisibleSystem {
 	private Components components = Components.get();
 
 	@Override
@@ -23,14 +23,6 @@ public class RotationSystem implements VisibleSystem {
 				new Vector2(vector.current().x, vector.current().z)
 				);
 		transform.rotationY = rotationY;
-		// Update position
-		Transform parent = null;
-		if ((parent = transform.parent) == null) {
-			return;
-		}
-		double rad = Math.toRadians(parent.rotationY);
-		transform.x = (float) ((transform._x) * Math.cos(rad) - (transform._z) * Math.sin(rad)) - transform._x;
-		transform.z = (float) ((transform._x) * Math.sin(rad) + (transform._z) * Math.cos(rad)) - transform._z;
 	}
 
 	@Override

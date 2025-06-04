@@ -3,12 +3,9 @@ package com.github.tavi.plague.ecs.spatial;
 import com.badlogic.gdx.math.Vector3;
 
 public class Transform {
-	public float x = 0;
-	public float y = 0;
-	public float z = 0;
-	public float _x = 0;
-	public float _y = 0;
-	public float _z = 0;
+	public Vector3 worldPosition = new Vector3();
+	public Vector3 originalLocalPosition = new Vector3();
+	public Vector3 rotatedLocalPosition = new Vector3();
 
 	public float rotationX = 0;
 	public float rotationY = 0;
@@ -19,28 +16,17 @@ public class Transform {
 	public Transform() { }
 	
 	public Transform(float x, float y, float z) {
-		_x = x;
-		_y = y;
-		_z = z;
+		originalLocalPosition.set(x, y, z);
 	}
+	
 
 	
-	public void set(Vector3 fromVector) {
-		x = fromVector.x;
-		y = fromVector.y;
-		z = fromVector.z;
+	public void setWorldPosition(Vector3 fromVector) {
+		worldPosition.set(fromVector);
 	}
 	
-	public float x() {
-		return _x + x + (parent != null ? parent.x : 0);
-	}
-	
-	public float y() {
-		return _y + y + (parent != null ? parent.y : 0);
-	}
-	
-	public float z() {
-		return _z + z + (parent != null ? parent.z : 0);
+	public void setWorldPosition(float x, float y, float z) {
+		worldPosition.set(x, y, z);
 	}
 	
 }

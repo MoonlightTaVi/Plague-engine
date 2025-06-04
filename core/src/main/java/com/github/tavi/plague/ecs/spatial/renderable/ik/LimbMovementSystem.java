@@ -24,7 +24,7 @@ public class LimbMovementSystem implements VisibleSystem {
 			return;
 		}
 		LimbMovementStrategy strategy = LimbMovementStrategy.get(skelly.type);
-		baseOrigin.set(transform.x, transform.y, transform.z);
+		baseOrigin.set(transform.worldPosition);
 		
 		skelly.time += delta;
 		for (Arm.Type armType : skelly.arms()) {
