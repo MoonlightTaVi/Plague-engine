@@ -34,11 +34,11 @@ public class Scene implements Screen {
         Arm spine = skelly.growArm(Arm.Type.SPINE, 2);
         
         id = spine.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", 0.5f, 0f));
+        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 18));
         
         id = spine.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", 0.5f, 0f));
+        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 29));
         
         
