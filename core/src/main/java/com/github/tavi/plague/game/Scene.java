@@ -53,9 +53,9 @@ public class Scene implements Screen {
         assets.batch().begin();
         
         entities.stream()
-        .peek(id -> rotationSystem.process(id))
-        .peek(id -> limbMovement.process(id))
-        .forEach(id -> renderer.process(id));
+        .peek(id -> rotationSystem.process(id, delta))
+        .peek(id -> limbMovement.process(id, delta))
+        .forEach(id -> renderer.process(id, delta));
         
         assets.batch().end();
     }

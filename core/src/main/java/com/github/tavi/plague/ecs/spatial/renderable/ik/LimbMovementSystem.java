@@ -11,7 +11,7 @@ public class LimbMovementSystem implements VisibleSystem {
 	private FABRIK ik = new FABRIK(0.1f);
 	
 	@Override
-	public void process(int entityId) {
+	public void process(int entityId, float delta) {
 		Skelly skelly;
 		MovementState state;
 		if (

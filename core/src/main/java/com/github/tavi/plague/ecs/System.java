@@ -13,6 +13,6 @@ public interface System {
 	 * during the execution of this system
 	 * @param entityId Identifier of the Entity being processed
 	 */
-	public void process(int entityId);
+	public void process(int entityId, float delta);
 	
 }

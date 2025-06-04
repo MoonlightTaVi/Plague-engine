@@ -13,7 +13,7 @@ public class Renderer implements VisibleSystem {
 	private Components components = Components.get();
 
 	@Override
-	public void process(int entityId) {
+	public void process(int entityId, float delta) {
 		Texture texture = null;
 		TextureMeta meta = null;
 		Transform transform = null;

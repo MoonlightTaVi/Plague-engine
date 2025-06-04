@@ -10,7 +10,7 @@ public class RotationSystem implements VisibleSystem {
 	private Components components = Components.get();
 
 	@Override
-	public void process(int entityId) {
+	public void process(int entityId, float delta) {
 		Transform transform = null;
 		DirectionalVector vector = null;
 		if ((transform = components.get(entityId, Transform.class)) == null ||
