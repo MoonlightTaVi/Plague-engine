@@ -31,8 +31,9 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 			}
 			
 			default:
-				return followMouse(baseOrigin);
+				break;
 		}
+		return null;
 	}
 	
 	private Vector3 danceSpine(
@@ -59,9 +60,9 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 	private Vector3 followMouse(Vector3 baseOrigin) {
 		return new Vector3(
 				Gdx.input.getX(),
-				baseOrigin.y,
-				Gdx.graphics.getHeight() - 1 - Gdx.input.getY() - baseOrigin.y // Find cursor Y position, then subtract "false" 50px of Y
+				0,
+				Gdx.graphics.getHeight() - 1 - Gdx.input.getY() // Find cursor Y position, then subtract "false" 50px of Y
 				)
-				.sub(baseOrigin);
+				.sub(baseOrigin).nor();
 	}
 }

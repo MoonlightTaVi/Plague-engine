@@ -2,6 +2,7 @@ package com.github.tavi.plague.ecs.spatial;
 
 import com.github.tavi.plague.util.Vectors;
 
+@Deprecated
 public record Rotation(float[] axes) {
 	
 	public Rotation() {

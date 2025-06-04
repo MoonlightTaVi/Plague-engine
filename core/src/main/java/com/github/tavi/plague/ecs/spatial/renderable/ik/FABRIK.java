@@ -81,9 +81,9 @@ public class FABRIK {
 			if ((vector = components.get(armIds[i - 1], DirectionalVector.class)) == null) {
 				throw new IllegalStateException(
 						String.format(
-								"Entity with ID %s does not have a %s property, but is forced into processing by IK",
-								DirectionalVector.class.getName(),
-								armIds[i]
+								"Entity with ID %d does not have a %s property, but is forced into processing by IK",
+								armIds[i - 1],
+								DirectionalVector.class.getName()
 										)
 						);
 			}

@@ -10,6 +10,7 @@ import com.github.tavi.plague.util.io.Assets;
  */
 public record TextureMeta(String path, float originX, float originY, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight) {
 	public static Vector2 SOUTH = new Vector2(0.5f, 0.15f);
+	public static Vector2 NORTH_EAST = new Vector2(0.85f, 0.85f);
 	
 	/**
 	 * Create a simple record on the Texture (centered at {@code (x:0;y:0)})

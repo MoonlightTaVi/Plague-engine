@@ -38,10 +38,15 @@ public class Scene implements Screen {
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 18));
         
         id = spine.push(entities.create());
+        Transform trTorso = components.register(id, Transform.class, new Transform());
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 29));
-        
-        
+
+        Arm rArm = skelly.growArm(Arm.Type.RARM, 1);
+        id = rArm.push(entities.create());
+        components.register(id, Transform.class, new Transform(-10, 0, 20)).parent = trTorso;
+        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_upper_arm_0.png", TextureMeta.NORTH_EAST));
+        components.register(id, DirectionalVector.class, new DirectionalVector(-8, 0, -15));
         
         
     }

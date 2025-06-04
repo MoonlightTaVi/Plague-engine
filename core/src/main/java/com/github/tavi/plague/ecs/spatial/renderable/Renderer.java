@@ -23,6 +23,9 @@ public class Renderer implements VisibleSystem {
 			return;
 		}
 		
+		float x = transform.x();
+		float y = transform.y();
+		float z = transform.z();
 		float scaleX = 1;
 		float scaleY = 1;
 		float rotation = transform.rotationY;
@@ -31,8 +34,8 @@ public class Renderer implements VisibleSystem {
 		
 		batch.draw(
 				texture, 
-				transform.x - meta.originX(), 
-				transform.y + transform.z - meta.originY(), 
+				x - meta.originX(), 
+				y + z - meta.originY(), 
 				meta.originX(), 
 				meta.originY(), 
 				meta.width(), 
