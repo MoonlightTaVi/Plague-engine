@@ -7,6 +7,10 @@ public class Transform {
 	public Vector3 originalLocalPosition = new Vector3();
 	public Vector3 rotatedLocalPosition = new Vector3();
 
+	public Vector3 prevWorldPosition = new Vector3();
+	public Vector3 velocityVector = new Vector3();
+	public Vector3 accelerationVector = new Vector3();
+	
 	public float rotationX = 0;
 	public float rotationY = 0;
 	public float rotationZ = 0;
@@ -15,8 +19,8 @@ public class Transform {
 	
 	public Transform() { }
 	
-	public Transform(float x, float y, float z) {
-		originalLocalPosition.set(x, y, z);
+	public Transform(float offsetX, float offsetY, float offsetZ) {
+		originalLocalPosition.set(offsetX, offsetY, offsetZ);
 	}
 	
 
@@ -28,5 +32,7 @@ public class Transform {
 	public void setWorldPosition(float x, float y, float z) {
 		worldPosition.set(x, y, z);
 	}
+	
+	
 	
 }
