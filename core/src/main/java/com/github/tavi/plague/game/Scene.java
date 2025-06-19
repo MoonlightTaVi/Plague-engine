@@ -3,13 +3,14 @@ package com.github.tavi.plague.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.ecs.behaviour.MovementState;
 import com.github.tavi.plague.ecs.spatial.*;
 import com.github.tavi.plague.ecs.spatial.renderable.*;
-import com.github.tavi.plague.ecs.spatial.renderable.ik.*;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.*;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.components.*;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.strategies.LimbMovementStrategy;
 import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
@@ -17,10 +18,10 @@ public class Scene implements Screen {
 	
 	// TEMPORARY --->
 	private Components components = Components.get();
-	private VisibleSystem renderer = new Renderer();
-	private VisibleSystem hierarchySystem = new VisibleHierarchySystem();
-	private VisibleSystem rotationSystem = new TextureRotationSystem();
-	private VisibleSystem limbMovement = new LimbMovementSystem();
+	private ECSystem renderer = new Renderer();
+	private ECSystem hierarchySystem = new VisibleHierarchySystem();
+	private ECSystem rotationSystem = new TextureRotationSystem();
+	private ECSystem limbMovement = new FabrikSystem();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
 	
@@ -36,7 +37,7 @@ public class Scene implements Screen {
         components.register(id, MovementState.class, MovementState.DANCING);
         t.setWorldPosition(50, 50, 0);
         Skelly skelly = components.register(id, new Skelly(Skelly.Type.HUMAN));
-        Arm spine = skelly.growArm(Arm.Type.SPINE, 2);
+        IdChain spine = skelly.growArm(ArmType.SPINE, 2);
         
         id = spine.push(entities.create());
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", TextureMeta.SOUTH));
@@ -47,7 +48,7 @@ public class Scene implements Screen {
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 29));
 
-        Arm rArm = skelly.growArm(Arm.Type.RARM, 2);
+        IdChain rArm = skelly.growArm(ArmType.RARM, 2);
         id = rArm.push(entities.create());
         components.register(id, Transform.class, new Transform(-10, 0, 20)).parent = trTorso;
         components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_upper_arm_0.png", TextureMeta.NORTH_EAST));

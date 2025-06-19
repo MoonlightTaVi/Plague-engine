@@ -16,10 +16,10 @@ public class YSortingSystem implements SortingSystem {
 				) {
 			return 0;
 		}
-		/*System.out.println(idA + " " + idB);
-		System.out.println(transformA.worldPosition.y + " " + transformB.worldPosition.y);
-		System.out.println(Float.compare(transformB.worldPosition.y, transformA.worldPosition.y));
-		System.out.println(transformA.worldPosition);*/
+		/*ECSystem.out.println(idA + " " + idB);
+		ECSystem.out.println(transformA.worldPosition.y + " " + transformB.worldPosition.y);
+		ECSystem.out.println(Float.compare(transformB.worldPosition.y, transformA.worldPosition.y));
+		ECSystem.out.println(transformA.worldPosition);*/
 		return Float.compare(transformB.worldPosition.y, transformA.worldPosition.y);
 	}
 

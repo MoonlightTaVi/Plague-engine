@@ -91,7 +91,7 @@ public class CattiComponents implements Components {
 	
 	/**
 	 * Generates a hash code, corresponding to the key inside {@link #components} HashMap
-	 * @param <COMPONENT> Type of the component
+	 * @param <COMPONENT> ArmType of the component
 	 * @param id Identifier of an entity
 	 * @param componentClass Class of the component
 	 * @return Generated hash code of the component of the entity
@@ -107,7 +107,7 @@ public class CattiComponents implements Components {
 	
 	/**
 	 * 
-	 * @param <COMPONENT> - Type of the component inside the entry
+	 * @param <COMPONENT> - ArmType of the component inside the entry
 	 * @param hash - Key of the components inside the {@link #components} HashMap
 	 * @param componentClass - Class of the component
 	 * @return Id of the entity this component belongs to

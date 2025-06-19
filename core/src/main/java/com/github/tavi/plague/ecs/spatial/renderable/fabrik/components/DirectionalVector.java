@@ -1,4 +1,4 @@
-package com.github.tavi.plague.ecs.spatial.renderable.ik;
+package com.github.tavi.plague.ecs.spatial.renderable.fabrik.components;
 
 import com.badlogic.gdx.math.Vector3;
 

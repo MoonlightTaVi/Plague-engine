@@ -18,7 +18,7 @@ public interface Components {
 	 * The difference from the {@link #register(Object, Object)} is that the component's
 	 * interface / superclass can be used as the key of the component entry 
 	 * (which allows {@code dependency inversion}, e.g. using different implementations of one component).
-	 * @param <COMPONENT> Type of the component
+	 * @param <COMPONENT> ArmType of the component
 	 * @param entity Identifier of the Entity
 	 * @param componentClass Interface of the component
 	 * @param component Actual value of the component
@@ -32,7 +32,7 @@ public interface Components {
 	 * The difference from the {@link #register(Object, Class, Object)} is that the component's
 	 * interface / superclass cannot be used as the key of the component entry 
 	 * (instead, the component's class itself is directly used).
-	 * @param <COMPONENT> Type of the component
+	 * @param <COMPONENT> ArmType of the component
 	 * @param entity Identifier of the Entity
 	 * @param componentType Interface of the component
 	 * @param component Actual value of the component
@@ -43,7 +43,7 @@ public interface Components {
 	
 	/**
 	 * Try to retrieve a component of the specified type, belonging to the entity
-	 * @param <COMPONENT> Type of the component
+	 * @param <COMPONENT> ArmType of the component
 	 * @param entity Identifier of the Entity
 	 * @param componentClass Interface of the component
 	 * @return The requested component if existent, {@code null} otherwise

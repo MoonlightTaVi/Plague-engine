@@ -1,9 +1,12 @@
-package com.github.tavi.plague.ecs.spatial.renderable.ik;
+package com.github.tavi.plague.ecs.spatial.renderable.fabrik.strategies;
 
 import java.util.*;
 
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.behaviour.MovementState;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.components.ArmType;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.components.Skelly;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.components.Skelly.Type;
 
 public interface LimbMovementStrategy {
 	
@@ -16,10 +19,8 @@ public interface LimbMovementStrategy {
 	}
 
 	public Vector3 calculateTargetPosition(
-			Vector3 baseOrigin, 
 			MovementState movementState, 
-			Arm.Type armType, 
-			Arm arm, 
+			ArmType armType, 
 			float time
 			);
 	

@@ -2,21 +2,18 @@ package com.github.tavi.plague.ecs.spatial;
 
 import com.badlogic.gdx.math.Vector2;
 import com.github.tavi.plague.ecs.Components;
-import com.github.tavi.plague.ecs.spatial.renderable.VisibleSystem;
-import com.github.tavi.plague.ecs.spatial.renderable.ik.DirectionalVector;
-import com.github.tavi.plague.util.Vectors;
+import com.github.tavi.plague.ecs.ECSystem;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.components.DirectionalVector;
+import com.github.tavi.plague.util.vectors.Vectors;
 
-public class TextureRotationSystem implements VisibleSystem {
+public class TextureRotationSystem implements ECSystem {
 	private Components components = Components.get();
+	
+	private Transform transform = null;
+	private DirectionalVector vector = null;
 
 	@Override
-	public void process(int entityId, float delta) {
-		Transform transform = null;
-		DirectionalVector vector = null;
-		if ((transform = components.get(entityId, Transform.class)) == null ||
-				(vector = components.get(entityId, DirectionalVector.class)) == null) {
-			return;
-		}
+	public void process(float delta) {
 		// Set rotation based on DirectionalVector
 		float rotationY = Vectors.angle(
 				new Vector2(vector.original().x, vector.original().z),
@@ -26,9 +23,10 @@ public class TextureRotationSystem implements VisibleSystem {
 	}
 
 	@Override
-	public boolean isVisible(int id) {
-		// TODO Auto-generated method stub
-		return true;
+	public boolean validate(int entityId) {
+		transform = components.get(entityId, Transform.class);
+		vector = components.get(entityId, DirectionalVector.class);
+		return ECSystem.super.areNotNull(transform, vector);
 	}
 
 }

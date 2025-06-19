@@ -2,20 +2,17 @@ package com.github.tavi.plague.ecs.spatial;
 
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.Components;
-import com.github.tavi.plague.ecs.spatial.renderable.VisibleSystem;
+import com.github.tavi.plague.ecs.ECSystem;
 
-public class VisibleHierarchySystem implements VisibleSystem {
+public class VisibleHierarchySystem implements ECSystem {
 	private final Vector3 rotationAxis = new Vector3(0, -1, 0);
 	private Components components = Components.get();
+	
+	private Transform transform = null;
+	private Transform parent = null;
 
 	@Override
-	public void process(int entityId, float delta) {
-		Transform transform = null;
-		Transform parent = null;
-		if ((transform = components.get(entityId, Transform.class)) == null ||
-				(parent = transform.parent) == null) {
-			return;
-		}
+	public void process(float delta) {
 		// Rotate around parent with parent
 		transform.rotatedLocalPosition.set(
 				transform.originalLocalPosition
@@ -27,9 +24,10 @@ public class VisibleHierarchySystem implements VisibleSystem {
 	}
 
 	@Override
-	public boolean isVisible(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validate(int entityId) {
+		transform = components.get(entityId, Transform.class);
+		parent = transform != null ? transform.parent : null;
+		return ECSystem.super.areNotNull(transform, parent);
 	}
 
 }

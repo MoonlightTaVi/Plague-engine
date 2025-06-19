@@ -1,9 +1,8 @@
-package com.github.tavi.plague.ecs.spatial.renderable.ik;
+package com.github.tavi.plague.ecs.spatial.renderable.fabrik.strategies;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.behaviour.MovementState;
-import com.github.tavi.plague.ecs.spatial.renderable.ik.Arm.Type;
+import com.github.tavi.plague.ecs.spatial.renderable.fabrik.components.ArmType;
 
 public class HumanMovementStrategy implements LimbMovementStrategy {
 	private final Vector3 target = new Vector3();
@@ -14,10 +13,8 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 	 */
 	@Override
 	public Vector3 calculateTargetPosition(
-			Vector3 baseOrigin,
 			MovementState movementState,
-			Type armType,
-			Arm arm,
+			ArmType armType,
 			float time
 			) {
 		switch (movementState) {
@@ -25,7 +22,7 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 			
 			switch (armType) {
 			case SPINE:
-				return danceSpine(baseOrigin, arm, time);
+				return danceSpine(time);
 			default:
 				break;
 			}
@@ -37,8 +34,6 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 	}
 	
 	private Vector3 danceSpine(
-			Vector3 baseOrigin,
-			Arm arm,
 			float time
 			) {
 		float[][] frames = new float[][] {
@@ -55,14 +50,5 @@ public class HumanMovementStrategy implements LimbMovementStrategy {
 		int frame = (int) (time);
 		target.set(frames[frame]);
 		return target;
-	}
-	
-	private Vector3 followMouse(Vector3 baseOrigin) {
-		return new Vector3(
-				Gdx.input.getX(),
-				0,
-				Gdx.graphics.getHeight() - 1 - Gdx.input.getY() // Find cursor Y position, then subtract "false" 50px of Y
-				)
-				.sub(baseOrigin).nor();
 	}
 }

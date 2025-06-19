@@ -4,26 +4,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.Components;
+import com.github.tavi.plague.ecs.ECSystem;
 import com.github.tavi.plague.ecs.spatial.Transform;
 import com.github.tavi.plague.util.io.Assets;
 
-public class Renderer implements VisibleSystem {
-	
+public class Renderer implements ECSystem {
 	private Assets assets = Assets.get();
 	private SpriteBatch batch = assets.batch();
 	private Components components = Components.get();
+	
+	private Texture texture = null;
+	private TextureMeta meta = null;
+	private Transform transform = null;
 
 	@Override
-	public void process(int entityId, float delta) {
-		Texture texture = null;
-		TextureMeta meta = null;
-		Transform transform = null;
-		if ((transform = components.get(entityId, Transform.class)) == null ||
-				(meta = components.get(entityId, TextureMeta.class)) == null ||
-				(texture = assets.texture(meta.path())) == null) {
-			return;
-		}
-		
+	public void process(float delta) {
+		texture = assets.texture(meta.path());
 		Vector3 worldPosition = transform.worldPosition;
 		float x = worldPosition.x;
 		float y = worldPosition.y;
@@ -55,9 +51,10 @@ public class Renderer implements VisibleSystem {
 	}
 
 	@Override
-	public boolean isVisible(int id) {
-		// TODO Auto-generated method stub
-		return true;
+	public boolean validate(int entityId) {
+		transform = components.get(entityId, Transform.class);
+		meta = components.get(entityId, TextureMeta.class);
+		return ECSystem.super.areNotNull(transform, meta);
 	}
 
 }
