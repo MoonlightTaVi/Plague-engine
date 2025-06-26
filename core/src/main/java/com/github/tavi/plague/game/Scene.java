@@ -42,64 +42,64 @@ public class Scene implements Screen {
         id = spine.push(entities.create());
         Transform trWaist = components.register(id, Transform.class, new Transform());
         trWaist.parent = t;
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_waist_0.png", TextureMeta.SOUTH));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_waist_0.png").centeredAt(TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 18));
         
         id = spine.push(entities.create());
         Transform trTorso = components.register(id, Transform.class, new Transform());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_torso_0.png", TextureMeta.SOUTH));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_torso_0.png").centeredAt(TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 29));
         
         id = spine.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_head_0.png", TextureMeta.SOUTH));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_head_0.png").centeredAt(TextureMeta.SOUTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 12));
 
         IdChain rArm = skelly.growArm(ArmType.RARM, 3);
         id = rArm.push(entities.create());
         components.register(id, Transform.class, new Transform(-10, 0, 20)).parent = trTorso;
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_upper_arm_0.png", TextureMeta.NORTH_EAST));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_upper_arm_0.png").centeredAt(TextureMeta.NORTH_EAST));
         components.register(id, DirectionalVector.class, new DirectionalVector(-6, 0, -19));
         id = rArm.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_lower_arm_0.png", TextureMeta.NORTH));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_lower_arm_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -18));
         id = rArm.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_hand_0.png", TextureMeta.NORTH_EAST));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_hand_0.png").centeredAt(TextureMeta.NORTH_EAST));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -15));
 
         IdChain lArm = skelly.growArm(ArmType.LARM, 3);
         id = lArm.push(entities.create());
         components.register(id, Transform.class, new Transform(10, 0, 20)).parent = trTorso;
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_upper_arm_0.png", TextureMeta.NORTH_WEST, true));
+        components.register(id, TextureMeta.class, new SpriteSheet(true).fromImage("textures/real-male/male_upper_arm_0.png").centeredAt(TextureMeta.NORTH_WEST));
         components.register(id, DirectionalVector.class, new DirectionalVector(6, 0, -19));
         id = lArm.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_lower_arm_0.png", TextureMeta.NORTH, true));
+        components.register(id, TextureMeta.class, new SpriteSheet(true).fromImage("textures/real-male/male_lower_arm_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -17));
         id = lArm.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_hand_0.png", TextureMeta.NORTH_WEST, true));
+        components.register(id, TextureMeta.class, new SpriteSheet(true).fromImage("textures/real-male/male_hand_0.png").centeredAt(TextureMeta.NORTH_WEST));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -15));
 
         IdChain rLeg = skelly.growArm(ArmType.RLEG, 3);
         id = rLeg.push(entities.create());
         components.register(id, Transform.class, new Transform(-6, 0, -3)).parent = trWaist;
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_upper_leg_0.png", TextureMeta.NORTH));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_upper_leg_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -20));
         id = rLeg.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_lower_leg_0.png", TextureMeta.NORTH));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_lower_leg_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -30));
         id = rLeg.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_foot_0.png", TextureMeta.NORTH));
+        components.register(id, TextureMeta.class, new SpriteSheet().fromImage("textures/real-male/male_foot_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 0));
 
         IdChain lLeg = skelly.growArm(ArmType.LLEG, 3);
         id = lLeg.push(entities.create());
         components.register(id, Transform.class, new Transform(6, 0, -3)).parent = trWaist;
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_upper_leg_0.png", TextureMeta.NORTH, true));
+        components.register(id, TextureMeta.class, new SpriteSheet(true).fromImage("textures/real-male/male_upper_leg_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -20));
         id = lLeg.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_lower_leg_0.png", TextureMeta.NORTH, true));
+        components.register(id, TextureMeta.class, new SpriteSheet(true).fromImage("textures/real-male/male_lower_leg_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, -30));
         id = lLeg.push(entities.create());
-        components.register(id, TextureMeta.class, new TextureMeta("textures/real-male/male_foot_0.png", TextureMeta.NORTH, true));
+        components.register(id, TextureMeta.class, new SpriteSheet(true).fromImage("textures/real-male/male_foot_0.png").centeredAt(TextureMeta.NORTH));
         components.register(id, DirectionalVector.class, new DirectionalVector(0, 0, 0));
         
         

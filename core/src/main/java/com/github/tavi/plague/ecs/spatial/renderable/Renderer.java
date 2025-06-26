@@ -27,8 +27,8 @@ public class Renderer implements ECSystem {
 		float scaleX = 1;
 		float scaleY = 1;
 		float rotation = transform.rotationY;
-		boolean flipX = meta.flipXY()[0];
-		boolean flipY = meta.flipXY()[1];
+		boolean flipX = meta.flipX();
+		boolean flipY = meta.flipY();
 		
 		batch.draw(
 				texture, 
@@ -36,8 +36,8 @@ public class Renderer implements ECSystem {
 				y + z - meta.originY(), 
 				meta.originX(), 
 				meta.originY(), 
-				meta.width(), 
-				meta.height(), 
+				meta.size().x, 
+				meta.size().y, 
 				scaleX, 
 				scaleY, 
 				rotation, 
