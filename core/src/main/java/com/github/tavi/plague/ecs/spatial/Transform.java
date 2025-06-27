@@ -13,6 +13,7 @@ public class Transform {
 	
 	public float rotationX = 0;
 	public float rotationY = 0;
+	/** Looking direction. */
 	public float rotationZ = 0;
 	
 	public Transform parent = null;

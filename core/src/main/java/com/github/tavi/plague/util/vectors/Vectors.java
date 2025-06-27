@@ -14,6 +14,7 @@ public class Vectors {
 		return (float)(Math.atan2(Math.sin(angle * Math.PI/180), Math.cos(angle * Math.PI/180)) * 180/Math.PI);
 	}
 	
+	@Deprecated
 	public static float[] rotateAround(float[] targetVector, float[] pivotVector, float degrees) {
 		if (targetVector.length < 2 || pivotVector.length < 2) {
 			return new float[2];
@@ -27,8 +28,12 @@ public class Vectors {
 	}
 	
 	public static float angle(Vector2 a, Vector2 b) {
-		float dot = a.x * b.x + a.y * b.y;
-		float det = a.x * b.y - b.x * a.y;
+		return angle(a.x, a.y, b.x, b.y);
+	}
+	
+	public static float angle(float x1, float y1, float x2, float y2) {
+		float dot = x1 * x2 + y1 * y2;
+		float det = x1 * y2 - x2 * y1;
 		return (float)Math.toDegrees(Math.atan2(det, dot));
 	}
 	
