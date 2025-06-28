@@ -7,7 +7,9 @@ import com.github.tavi.plague.util.vectors.Vectors;
 
 /**
  * Changes {@code Rotation}'s {@code rotationZ} value,
- * based on Entity's LookVector.
+ * based on Entity's LookVector. <br>
+ * NOTE: This system adds Rotation component
+ * automatically, if LookVector is present.
  * @see com.github.tavi.plague.ecs.spatial.Rotation
  * @see com.github.tavi.plague.ecs.spatial.LookVector
  */

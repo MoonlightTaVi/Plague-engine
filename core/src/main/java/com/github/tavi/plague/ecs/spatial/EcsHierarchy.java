@@ -8,7 +8,10 @@ import com.github.tavi.plague.ecs.util.ParentRef;
 /**
  * Updates Entity's {@code Transform} and {@code Rotation}
  * components based on its {@code ParentRef}
- * (ID of the parent to inherit from).
+ * (ID of the parent to inherit from). <br>
+ * NOTE: This system adds Rotation component
+ * automatically, if both Transform and ParentRef
+ * components are present.
  * @see com.github.tavi.plague.ecs.util.ParentRef
  * @see com.github.tavi.plague.ecs.spatial.Transform
  * @see com.github.tavi.plague.ecs.spatial.Rotation

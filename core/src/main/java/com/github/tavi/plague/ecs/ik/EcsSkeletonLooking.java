@@ -6,7 +6,10 @@ import com.github.tavi.plague.ecs.util.Entity;
 
 /**
  * Changes all of the skeleton's bones's {@code Rotation.rotationZ}
- * based on the skeleton look rotation.
+ * based on the skeleton look rotation. The bones themselves
+ * may not have the {@code LookVector} component, but
+ * their skeleton must have one. <br>
+ * Placed after {@code EcsLookRotation}.
  * @see com.github.tavi.plague.ecs.spatial.EcsLookRotation
  */
 public class EcsSkeletonLooking implements ECSystem {

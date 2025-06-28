@@ -7,7 +7,7 @@ import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.ecs.spatial.*;
 import com.github.tavi.plague.util.io.Assets;
 
-public class Renderer implements ECSystem {
+public class EcsRenderer implements ECSystem {
 	private Assets assets = Assets.get();
 	private SpriteBatch batch = assets.batch();
 	private Components components = Components.get();

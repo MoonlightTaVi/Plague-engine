@@ -2,8 +2,6 @@ package com.github.tavi.plague.ecs.ik;
 
 import java.util.*;
 
-import com.github.tavi.plague.ecs.util.IdChain;
-
 public class Skeleton {
 	public SkeletonType type;
 	public float time = 0f;
@@ -20,7 +18,7 @@ public class Skeleton {
 	 * @param boneCount Number of bones in the Arm.
 	 * @return This new, empty Arm for later use (e.g. to fill it with bones).
 	 */
-	public IdChain growArm(ArmType type, int boneCount) {
+	public IkArm growArm(ArmType type, int boneCount) {
 		IkArm newArm = new IkArm(boneCount, type);
 		arms.put(type, newArm);
 		return newArm;

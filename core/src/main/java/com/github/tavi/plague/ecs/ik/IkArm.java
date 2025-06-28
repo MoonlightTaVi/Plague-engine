@@ -6,6 +6,10 @@ import com.github.tavi.plague.ecs.util.IdChain;
 /**
  * A data object, that serves as a mediator between
  * Inverse Kinematics algorithms and actual Entities inside the skeleton Arm.
+ * <br>
+ * WARNING: Every bone Entity inside the IkArm must have
+ * a BoneVector component.
+ * @see com.github.tavi.plague.ecs.ik.BoneVector
  */
 public class IkArm extends IdChain {
 	public final ArmType armType;

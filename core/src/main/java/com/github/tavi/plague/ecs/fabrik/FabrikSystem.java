@@ -12,9 +12,14 @@ import com.github.tavi.plague.ecs.ik.strategies.IkMovementStrategy;
  * (where they are needed to move to, accordingly to
  * the current Skeleton animation). <br>
  * Entity's Transform (for each bone) is then used to update its
- * Texture position (for rendering).
+ * Texture position (for rendering). <br>
+ * NOTE: This system adds Transform component automatically,
+ * if all the other necessary components are present. <br>
+ * WARNING: Having a bone Entity, which does not have a BoneVector,
+ * inside a skeleton will raise an exception.
  * @see com.github.tavi.plague.ecs.ik.Skeleton
  * @see com.github.tavi.plague.ecs.states.MovementState
+ * @see com.github.tavi.plague.ecs.ik.BoneVector
  * @see com.github.tavi.plague.ecs.spatial.Transform
  */
 public class FabrikSystem implements ECSystem {

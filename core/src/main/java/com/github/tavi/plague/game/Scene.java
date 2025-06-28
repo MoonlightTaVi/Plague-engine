@@ -12,8 +12,7 @@ import com.github.tavi.plague.ecs.ik.strategies.IkMovementStrategy;
 import com.github.tavi.plague.ecs.renderable.*;
 import com.github.tavi.plague.ecs.spatial.*;
 import com.github.tavi.plague.ecs.states.MovementState;
-import com.github.tavi.plague.ecs.util.IdChain;
-import com.github.tavi.plague.ecs.util.ParentRef;
+import com.github.tavi.plague.ecs.util.*;
 import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
@@ -21,12 +20,12 @@ public class Scene implements Screen {
 	
 	// TEMPORARY --->
 	private Components components = Components.get();
-	private ECSystem lookDirectionSystem = new EcsLookRotation();
-	private ECSystem renderer = new Renderer();
-	private ECSystem hierarchySystem = new EcsHierarchy();
-	private ECSystem rotationSystem = new EcsBoneRotation();
-	private ECSystem limbMovement = new FabrikSystem();
-	private ECSystem skeletonLooking = new EcsSkeletonLooking();
+	private ECSystem rotateLook = new EcsLookRotation();
+	private ECSystem renderer = new EcsRenderer();
+	private ECSystem hierarchy = new EcsHierarchy();
+	private ECSystem rotateBones = new EcsBoneRotation();
+	private ECSystem ik = new FabrikSystem();
+	private ECSystem rotateSkeleton = new EcsSkeletonLooking();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
 	
@@ -49,7 +48,7 @@ public class Scene implements Screen {
         input = new InputHandler(lookingAt);
         
         Skeleton skelly = components.register(entityId, new Skeleton(SkeletonType.HUMAN));
-        IdChain spine = skelly.growArm(ArmType.SPINE, 3);
+        IkArm spine = skelly.growArm(ArmType.SPINE, 3);
         
         int waistId = spine.push(entities.create());
         components.register(waistId, new ParentRef(entityId));
@@ -64,7 +63,7 @@ public class Scene implements Screen {
         components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_head_0.png").centeredAt(TextureMeta.SOUTH));
         components.register(runningId, new BoneVector(0, 0, 12));
 
-        IdChain rArm = skelly.growArm(ArmType.RARM, 3);
+        IkArm rArm = skelly.growArm(ArmType.RARM, 3);
         runningId = rArm.push(entities.create());
         components.register(runningId, new Transform(-10, 0, 20));
         components.register(runningId, new ParentRef(torsoId));
@@ -77,7 +76,7 @@ public class Scene implements Screen {
         components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_hand_0.png").centeredAt(TextureMeta.NORTH_EAST));
         components.register(runningId, new BoneVector(0, 0, -15));
         
-        IdChain lArm = skelly.growArm(ArmType.LARM, 3);
+        IkArm lArm = skelly.growArm(ArmType.LARM, 3);
         runningId = lArm.push(entities.create());
         components.register(runningId, new Transform(10, 0, 20));
         components.register(runningId, new ParentRef(torsoId));
@@ -90,7 +89,7 @@ public class Scene implements Screen {
         components.register(runningId, TextureMeta.class, new SheetMeta(true).fromImage("textures/real-male/male_hand_0.png").centeredAt(TextureMeta.NORTH_WEST));
         components.register(runningId, new BoneVector(0, 0, -15));
 
-        IdChain rLeg = skelly.growArm(ArmType.RLEG, 3);
+        IkArm rLeg = skelly.growArm(ArmType.RLEG, 3);
         runningId = rLeg.push(entities.create());
         components.register(runningId, new Transform(-6, 0, -3));
         components.register(runningId, new ParentRef(waistId));
@@ -103,7 +102,7 @@ public class Scene implements Screen {
         components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_foot_0.png").centeredAt(TextureMeta.NORTH));
         components.register(runningId, new BoneVector(-5, 0, 0));
 
-        IdChain lLeg = skelly.growArm(ArmType.LLEG, 3);
+        IkArm lLeg = skelly.growArm(ArmType.LLEG, 3);
         runningId = lLeg.push(entities.create());
         components.register(runningId, new Transform(6, 0, -3));
         components.register(runningId, new ParentRef(waistId));
@@ -130,11 +129,11 @@ public class Scene implements Screen {
         assets.batch().begin();
         
         entities.stream()
-        .peek(id -> lookDirectionSystem.process(id, delta))
-        .peek(id -> limbMovement.process(id, delta))
-        .peek(id -> skeletonLooking.process(id, delta))
-        .peek(id -> hierarchySystem.process(id, delta))
-        .peek(id -> rotationSystem.process(id, delta))
+        .peek(id -> rotateLook.process(id, delta))
+        .peek(id -> ik.process(id, delta))
+        .peek(id -> rotateSkeleton.process(id, delta))
+        .peek(id -> hierarchy.process(id, delta))
+        .peek(id -> rotateBones.process(id, delta))
         .forEach(id -> renderer.process(id, delta));
         
         assets.batch().end();
