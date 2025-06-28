@@ -3,7 +3,7 @@ package com.github.tavi.plague.util.vectors;
 import com.badlogic.gdx.math.Vector3;
 
 public interface VectorChain {
-	public void build();
+	public void buildChain();
 	
 	default void chainVectors(Vector3[] positions) {
 		for (int i = 1; i < positions.length; i++) {

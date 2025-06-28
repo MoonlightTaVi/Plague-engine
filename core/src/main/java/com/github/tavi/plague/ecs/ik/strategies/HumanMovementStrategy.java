@@ -1,10 +1,10 @@
-package com.github.tavi.plague.ecs.spatial.renderable.fabrik.strategies;
+package com.github.tavi.plague.ecs.ik.strategies;
 
 import com.badlogic.gdx.math.Vector3;
-import com.github.tavi.plague.ecs.behaviour.MovementState;
-import com.github.tavi.plague.ecs.spatial.renderable.fabrik.components.ArmType;
+import com.github.tavi.plague.ecs.ik.ArmType;
+import com.github.tavi.plague.ecs.states.MovementState;
 
-public class HumanMovementStrategy implements LimbMovementStrategy {
+public class HumanMovementStrategy implements IkMovementStrategy {
 	private final Vector3 target = new Vector3();
 	
 	/**

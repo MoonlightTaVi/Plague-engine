@@ -1,8 +1,8 @@
-package com.github.tavi.plague.ecs.spatial.renderable.fabrik;
+package com.github.tavi.plague.ecs.fabrik;
 
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.Components;
-import com.github.tavi.plague.ecs.spatial.renderable.TextureMeta;
+import com.github.tavi.plague.ecs.renderable.TextureMeta;
 import com.github.tavi.plague.ecs.spatial.Transform;
 
 /**

@@ -1,4 +1,4 @@
-package com.github.tavi.plague.game.controls;
+package com.github.tavi.plague.controls;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

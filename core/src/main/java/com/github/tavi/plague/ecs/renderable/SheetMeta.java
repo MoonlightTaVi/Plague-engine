@@ -1,14 +1,15 @@
-package com.github.tavi.plague.ecs.spatial.renderable;
+package com.github.tavi.plague.ecs.renderable;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.github.tavi.plague.util.io.Assets;
 
 /**
- * The record contains all the static information needed in order to render a Texture on the screen. <br>
- * It does not contain the Texture itself.
+ * TextureMeta that contains a single sprite sheet with a texture.
+ * To render a frame, texture's source rectangle is being changed
+ * during animations.
  */
-public class SpriteSheet implements TextureMeta {
+public class SheetMeta implements TextureMeta {
 	Texture texture = null;
 	int frames = 1;
 	int frame = 0;
@@ -24,19 +25,19 @@ public class SpriteSheet implements TextureMeta {
 	boolean flipX = false;
 	boolean flipY = false;
 	
-	public SpriteSheet() {
+	public SheetMeta() {
 	}
 	
-	public SpriteSheet(boolean flipX) {
+	public SheetMeta(boolean flipX) {
 		originalFlipX = flipX;
 	}
 	
-	public SpriteSheet(boolean flipX, boolean flipY) {
+	public SheetMeta(boolean flipX, boolean flipY) {
 		originalFlipX = flipX;
 		originalFlipY = flipY;
 	}
 	
-	public SpriteSheet fromImage(String path) {
+	public SheetMeta fromImage(String path) {
 		this.path = path;
 		dimensions.set(texture(path).getWidth(), texture(path).getHeight());
 		sourceSize.set(dimensions.x, dimensions.y);
@@ -44,22 +45,22 @@ public class SpriteSheet implements TextureMeta {
 		return this;
 	}
 	
-	public SpriteSheet centeredAt(float x, float y) {
+	public SheetMeta centeredAt(float x, float y) {
 		origin.set(x, y);
 		return this;
 	}
 	
-	public SpriteSheet centeredAt(Vector2 relativeOrigin) {
+	public SheetMeta centeredAt(Vector2 relativeOrigin) {
 		this.origin.set(relativeOrigin).scl(dimensions);
 		return this;
 	}
 	
-	public SpriteSheet withFrames(int numberOfFrames) {
+	public SheetMeta withFrames(int numberOfFrames) {
 		frames = numberOfFrames;
 		return this;
 	}
 	
-	public SpriteSheet build() {
+	public SheetMeta build() {
 		if (frames > 0 && sourceSize.len2() > 0) {
 			frameSize.set(sourceSize.x / frames, sourceSize.y);
 		}

@@ -2,36 +2,32 @@ package com.github.tavi.plague.ecs.spatial;
 
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Main component, representing the Entity's position
+ * in the world. Used by all spatial EC systems.
+ * @see #worldPosition
+ * @see #rotatedOffset
+ */
 public class Transform {
+	/** Base world position. */
 	public Vector3 worldPosition = new Vector3();
-	public Vector3 originalLocalPosition = new Vector3();
-	public Vector3 rotatedLocalPosition = new Vector3();
-
-	public Vector3 prevWorldPosition = new Vector3();
-	public Vector3 velocityVector = new Vector3();
-	public Vector3 accelerationVector = new Vector3();
-	
-	public float rotationX = 0;
-	public float rotationY = 0;
-	/** Looking direction. */
-	public float rotationZ = 0;
-	
-	public Transform parent = null;
+	/** Original local offset (added to worldPosition if rotation is 0f). */
+	public Vector3 originalOffset = new Vector3();
+	/** Local offset after being rotated (added to worldPosition). */
+	public Vector3 rotatedOffset = new Vector3();
 	
 	public Transform() { }
 	
+	/**
+	 * Constructs the Transform component, setting
+	 * its initial offset from its base origin.
+	 * @param offsetX
+	 * @param offsetY
+	 * @param offsetZ
+	 * @see #originalOffset
+	 */
 	public Transform(float offsetX, float offsetY, float offsetZ) {
-		originalLocalPosition.set(offsetX, offsetY, offsetZ);
-	}
-	
-
-	
-	public void setWorldPosition(Vector3 fromVector) {
-		worldPosition.set(fromVector);
-	}
-	
-	public void setWorldPosition(float x, float y, float z) {
-		worldPosition.set(x, y, z);
+		originalOffset.set(offsetX, offsetY, offsetZ);
 	}
 	
 	

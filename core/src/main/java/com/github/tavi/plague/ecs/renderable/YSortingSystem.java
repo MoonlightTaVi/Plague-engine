@@ -1,7 +1,6 @@
-package com.github.tavi.plague.ecs.spatial.renderable;
+package com.github.tavi.plague.ecs.renderable;
 
 import com.github.tavi.plague.ecs.Components;
-import com.github.tavi.plague.ecs.SortingSystem;
 import com.github.tavi.plague.ecs.spatial.Transform;
 
 public class YSortingSystem implements SortingSystem {

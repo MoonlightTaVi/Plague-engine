@@ -1,4 +1,4 @@
-package com.github.tavi.plague.ecs.spatial.renderable;
+package com.github.tavi.plague.ecs.renderable;
 
 import com.badlogic.gdx.math.Vector2;
 

@@ -1,11 +1,10 @@
-package com.github.tavi.plague.ecs.spatial.renderable;
+package com.github.tavi.plague.ecs.renderable;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
-import com.github.tavi.plague.ecs.Components;
-import com.github.tavi.plague.ecs.ECSystem;
-import com.github.tavi.plague.ecs.spatial.Transform;
+import com.github.tavi.plague.ecs.*;
+import com.github.tavi.plague.ecs.spatial.*;
 import com.github.tavi.plague.util.io.Assets;
 
 public class Renderer implements ECSystem {
@@ -16,6 +15,7 @@ public class Renderer implements ECSystem {
 	private Texture texture = null;
 	private TextureMeta meta = null;
 	private Transform transform = null;
+	private Rotation rotation = null;
 
 	@Override
 	public void process(float delta) {
@@ -26,7 +26,7 @@ public class Renderer implements ECSystem {
 		float z = worldPosition.z;
 		float scaleX = 1;
 		float scaleY = 1;
-		float rotation = transform.rotationY;
+		float rotationY = rotation.rotationY;
 		boolean flipX = meta.flipX();
 		boolean flipY = meta.flipY();
 		
@@ -40,7 +40,7 @@ public class Renderer implements ECSystem {
 				meta.size().y, 
 				scaleX, 
 				scaleY, 
-				rotation, 
+				rotationY, 
 				meta.srcX(), 
 				meta.srcY(), 
 				meta.srcWidth(), 
@@ -53,8 +53,9 @@ public class Renderer implements ECSystem {
 	@Override
 	public boolean validate(int entityId) {
 		transform = components.get(entityId, Transform.class);
+		rotation = components.get(entityId, Rotation.class);
 		meta = components.get(entityId, TextureMeta.class);
-		return ECSystem.super.areNotNull(transform, meta);
+		return ECSystem.super.areNotNull(transform, meta, rotation);
 	}
 
 }
