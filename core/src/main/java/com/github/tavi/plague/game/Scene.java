@@ -1,5 +1,7 @@
 package com.github.tavi.plague.game;
 
+import java.util.Comparator;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
@@ -26,6 +28,7 @@ public class Scene implements Screen {
 	private ECSystem rotateBones = new EcsBoneRotation();
 	private ECSystem ik = new FabrikSystem();
 	private ECSystem rotateSkeleton = new EcsSkeletonLooking();
+	private Comparator<Integer> renderSort = new IsometricComparator();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
 	
@@ -132,8 +135,9 @@ public class Scene implements Screen {
         .peek(id -> rotateLook.process(id, delta))
         .peek(id -> ik.process(id, delta))
         .peek(id -> rotateSkeleton.process(id, delta))
-        .peek(id -> hierarchy.process(id, delta))
         .peek(id -> rotateBones.process(id, delta))
+        .peek(id -> hierarchy.process(id, delta))
+        .sorted(renderSort)
         .forEach(id -> renderer.process(id, delta));
         
         assets.batch().end();
