@@ -39,86 +39,7 @@ public class Scene implements Screen {
 	
     @Override
     public void show() {
-    	IkMovementStrategy.setupStrategies();
     	
-    	int entityId = entities.create();
-    	int runningId = 0;
-        Transform t = components.register(entityId, new Transform());
-        components.register(entityId, MovementState.DANCING);
-        t.worldPosition.set(50, 70, 0);
-        
-        LookVector lookingAt = components.register(entityId, new LookVector(0, -1, 0));
-        input = new InputHandler(lookingAt);
-        
-        Skeleton skelly = components.register(entityId, new Skeleton(SkeletonType.HUMAN));
-        IkArm spine = skelly.growArm(ArmType.SPINE, 3);
-        
-        int waistId = spine.push(entities.create());
-        components.register(waistId, new ParentRef(entityId));
-        components.register(waistId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_waist_0.png").centeredAt(TextureMeta.SOUTH));
-        components.register(waistId, new BoneVector(0, 0, 18));
-        
-        int torsoId = spine.push(entities.create());
-        components.register(torsoId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_torso_0.png").centeredAt(TextureMeta.SOUTH));
-        components.register(torsoId, new BoneVector(0, 0, 29));
-        
-        runningId = spine.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_head_0.png").centeredAt(TextureMeta.SOUTH));
-        components.register(runningId, new BoneVector(0, 0, 12));
-
-        IkArm rArm = skelly.growArm(ArmType.RARM, 3);
-        runningId = rArm.push(entities.create());
-        components.register(runningId, new Transform(-10, 0, 20));
-        components.register(runningId, new ParentRef(torsoId));
-        components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_upper_arm_0.png").centeredAt(TextureMeta.NORTH_EAST));
-        components.register(runningId, new BoneVector(-6, 0, -19));
-        runningId = rArm.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_lower_arm_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(0, 0, -18));
-        runningId = rArm.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_hand_0.png").centeredAt(TextureMeta.NORTH_EAST));
-        components.register(runningId, new BoneVector(0, 0, -15));
-        
-        IkArm lArm = skelly.growArm(ArmType.LARM, 3);
-        runningId = lArm.push(entities.create());
-        components.register(runningId, new Transform(10, 0, 20));
-        components.register(runningId, new ParentRef(torsoId));
-        components.register(runningId, TextureMeta.class, new SheetMeta(true).fromImage("textures/real-male/male_upper_arm_0.png").centeredAt(TextureMeta.NORTH_WEST));
-        components.register(runningId, new BoneVector(6, 0, -19));
-        runningId = lArm.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta(true).fromImage("textures/real-male/male_lower_arm_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(0, 0, -17));
-        runningId = lArm.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta(true).fromImage("textures/real-male/male_hand_0.png").centeredAt(TextureMeta.NORTH_WEST));
-        components.register(runningId, new BoneVector(0, 0, -15));
-
-        IkArm rLeg = skelly.growArm(ArmType.RLEG, 3);
-        runningId = rLeg.push(entities.create());
-        components.register(runningId, new Transform(-6, 0, -3));
-        components.register(runningId, new ParentRef(waistId));
-        components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_upper_leg_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(0, 0, -20));
-        runningId = rLeg.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_lower_leg_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(0, 0, -30));
-        runningId = rLeg.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta().fromImage("textures/real-male/male_foot_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(-5, 0, 0));
-
-        IkArm lLeg = skelly.growArm(ArmType.LLEG, 3);
-        runningId = lLeg.push(entities.create());
-        components.register(runningId, new Transform(6, 0, -3));
-        components.register(runningId, new ParentRef(waistId));
-        components.register(runningId, TextureMeta.class, new SheetMeta(true).fromImage("textures/real-male/male_upper_leg_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(0, 0, -20));
-        runningId = lLeg.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta(true).fromImage("textures/real-male/male_lower_leg_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(0, 0, -30));
-        runningId = lLeg.push(entities.create());
-        components.register(runningId, TextureMeta.class, new SheetMeta(true).fromImage("textures/real-male/male_foot_0.png").centeredAt(TextureMeta.NORTH));
-        components.register(runningId, new BoneVector(5, 0, 0));
-        
-        
     }
 
     @Override
@@ -127,7 +48,7 @@ public class Scene implements Screen {
     	Gdx.graphics.setTitle(String.format("Plague Engine [%dFPS] %s", Gdx.graphics.getFramesPerSecond(), cursor));
     	ScreenUtils.clear(0, 0, 0, 1);
     	
-    	input.handleInput(delta);
+    	//input.handleInput(delta);
         
         assets.batch().begin();
         
