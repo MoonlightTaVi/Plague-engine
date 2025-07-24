@@ -9,7 +9,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class SciacalloEntities implements Entities {
+public class SciacalloEntities implements Entities, EntityTagger {
 	
 	private static volatile Entities INSTANCE = null;
 	
@@ -42,6 +42,14 @@ public class SciacalloEntities implements Entities {
 		}
 		
 		entities.add(id);
+		return id;
+	}
+
+	@Override
+	public int createIfAbsent(int id) {
+		if (!entities.contains(id)) {
+			entities.add(id);
+		}
 		return id;
 	}
 
