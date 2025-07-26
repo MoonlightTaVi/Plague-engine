@@ -1,4 +1,4 @@
-package com.github.tavi.plague.engine.component;
+package com.github.tavi.plague.engine.archive;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -117,6 +117,12 @@ public class CattiComponents implements Components {
 		result /= 31;
 		result -= 31;
 		return result;
+	}
+
+	@Override
+	public <COMPONENT> boolean unregister(int entity, Class<COMPONENT> componentClass) {
+		int hash = getHash(entity, componentClass);
+		return components.remove(hash) != null;
 	}
 
 }

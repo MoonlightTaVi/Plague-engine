@@ -16,9 +16,19 @@ public class EntityMask {
 					)
 			);
 	
+
 	public void register(Object component) {
 		namesArray = null;
 		componentNames.add(component.getClass().getName());
+	}
+	
+	public int register(Object... components) {
+		namesArray = null;
+		for (Object component : components) {
+			componentNames.add(component.getClass().getName());
+		}
+		build();
+		return getMask(components);
 	}
 	
 	public void build() {
@@ -30,7 +40,7 @@ public class EntityMask {
 				.map(o -> o.getClass().getName())
 				.collect(Collectors.toSet());
 		if (namesArray == null) {
-			throw  illegalState;
+			throw illegalState;
 		}
 		int mask = 0;
 		for (int i = 0; i < namesArray.length; i++) {

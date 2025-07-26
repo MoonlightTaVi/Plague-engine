@@ -1,10 +1,9 @@
 package com.github.tavi.plague.ecs.ik;
 
-import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.ecs.spatial.Rotation;
 import com.github.tavi.plague.ecs.util.Entity;
-import com.github.tavi.plague.engine.component.Components;
-import com.github.tavi.plague.engine.system.ECSystem;
+import com.github.tavi.plague.engine.archive.Components;
+import com.github.tavi.plague.engine.archive.ECSystem;
 
 /**
  * Changes all of the skeleton's bones's {@code Rotation.rotationZ}

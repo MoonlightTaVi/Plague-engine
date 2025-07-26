@@ -7,17 +7,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.controls.InputHandler;
-import com.github.tavi.plague.ecs.*;
-import com.github.tavi.plague.ecs.fabrik.*;
-import com.github.tavi.plague.ecs.ik.*;
-import com.github.tavi.plague.ecs.ik.strategies.IkMovementStrategy;
 import com.github.tavi.plague.ecs.renderable.*;
 import com.github.tavi.plague.ecs.spatial.*;
-import com.github.tavi.plague.ecs.states.MovementState;
-import com.github.tavi.plague.ecs.util.*;
 import com.github.tavi.plague.engine.component.Components;
-import com.github.tavi.plague.engine.entity.Entities;
 import com.github.tavi.plague.engine.system.ECSystem;
+import com.github.tavi.plague.engine.entity.Entities;
+import com.github.tavi.plague.engine.entity.util.EntityMask;
 import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
@@ -25,12 +20,12 @@ public class Scene implements Screen {
 	
 	// TEMPORARY --->
 	private Components components = Components.get();
-	private ECSystem rotateLook = new EcsLookRotation();
-	private ECSystem renderer = new EcsRenderer();
-	private ECSystem hierarchy = new EcsHierarchy();
-	private ECSystem rotateBones = new EcsBoneRotation();
-	private ECSystem ik = new FabrikSystem();
-	private ECSystem rotateSkeleton = new EcsSkeletonLooking();
+	//private ECSystem rotateLook = new EcsLookRotation();
+	private ECSystem renderer = null;
+	//private ECSystem hierarchy = new EcsHierarchy();
+	//private ECSystem rotateBones = new EcsBoneRotation();
+	//private ECSystem ik = new FabrikSystem();
+	//private ECSystem rotateSkeleton = new EcsSkeletonLooking();
 	private Comparator<Integer> renderSort = new IsometricComparator();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
@@ -42,7 +37,14 @@ public class Scene implements Screen {
 	
     @Override
     public void show() {
-    	
+    	EntityMask eMask = new EntityMask();
+    	TextureMeta meta = new SheetMeta().fromImage("textures/male_0.png");
+    	Transform t = new Transform();
+    	Rotation r = new Rotation();
+    	components.addComponents(0, meta, t, r);
+    	int mask = eMask.register(meta, t, r);
+    	renderer = new EcsRenderer(mask);
+    	renderer.subscribe(0);
     }
 
     @Override
@@ -55,14 +57,7 @@ public class Scene implements Screen {
         
         assets.batch().begin();
         
-        entities.stream()
-        .peek(id -> rotateLook.process(id, delta))
-        .peek(id -> ik.process(id, delta))
-        .peek(id -> rotateSkeleton.process(id, delta))
-        .peek(id -> rotateBones.process(id, delta))
-        .peek(id -> hierarchy.process(id, delta))
-        .sorted(renderSort)
-        .forEach(id -> renderer.process(id, delta));
+        renderer.process(delta);
         
         assets.batch().end();
     }

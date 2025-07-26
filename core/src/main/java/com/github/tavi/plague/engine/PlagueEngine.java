@@ -1,6 +1,5 @@
 package com.github.tavi.plague.engine;
 
-import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.engine.component.Components;
 import com.github.tavi.plague.engine.entity.TreeOfEntities;
 import com.github.tavi.plague.engine.entity.util.EntityMask;
@@ -11,23 +10,19 @@ public class PlagueEngine {
 	private EntityMask mask = new EntityMask();
 	
 	public void register(int entityId, Object... entityComponents) {
-		entities.createIfAbsent(entityId);
+		if (!entities.idExists(entityId)) {
+			throw new IllegalArgumentException("Entity does not exist, entityId: " + entityId);
+		}
 		for (Object component : entityComponents) {
-			components.register(entityId, component);
+			components.addComponents(entityId, component);
 			mask.register(component);
 		}
-		int oldMask = entities.getMask(entityId);
-		int newMask = mask.getMask(entityComponents);
-		entities.setMask(entityId, oldMask | newMask);
 	}
 	
 	public void unregister(int entityId, Object... entityComponents) {
 		for (Object component : entityComponents) {
-			//components.unregister(entityId, component);
+			components.removeComponents(entityId, component);
 		}
-		int oldMask = entities.getMask(entityId);
-		int invertedMask = ~mask.getMask(entityComponents);
-		entities.setMask(entityId, oldMask & invertedMask);
 	}
 	
 	

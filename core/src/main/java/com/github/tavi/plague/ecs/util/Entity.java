@@ -2,13 +2,13 @@ package com.github.tavi.plague.ecs.util;
 
 import java.util.function.Supplier;
 
-import com.github.tavi.plague.engine.component.Components;
+import com.github.tavi.plague.engine.archive.Components;
 
 /**
  * A mediator class to make cooperation between EC Systems
  * and Components easier in ECS engine.
- * @see com.github.tavi.plague.engine.system.ECSystem
- * @see com.github.tavi.plague.engine.component.Components
+ * @see com.github.tavi.plague.engine.archive.ECSystem
+ * @see com.github.tavi.plague.engine.archive.Components
  */
 public class Entity {
 	/** A storage of components. */

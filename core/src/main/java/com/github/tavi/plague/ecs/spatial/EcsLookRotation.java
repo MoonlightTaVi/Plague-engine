@@ -1,8 +1,8 @@
 package com.github.tavi.plague.ecs.spatial;
 
 import com.badlogic.gdx.math.Vector3;
-import com.github.tavi.plague.engine.component.Components;
-import com.github.tavi.plague.engine.system.ECSystem;
+import com.github.tavi.plague.engine.archive.Components;
+import com.github.tavi.plague.engine.archive.ECSystem;
 import com.github.tavi.plague.util.vectors.Vectors;
 
 /**

@@ -1,4 +1,4 @@
-package com.github.tavi.plague.engine.entity;
+package com.github.tavi.plague.engine.archive;
 
 import java.util.HashMap;
 import java.util.HashSet;

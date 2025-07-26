@@ -1,16 +1,15 @@
 package com.github.tavi.plague.engine.entity;
 
-import java.util.stream.Stream;
+import java.util.Collection;
 
 public interface Entities {
-	
 	public static Entities get() {
-		return SciacalloEntities.get();
+		return TreeOfEntities.get();
 	}
 	
-	public int create();
-	public int createIfAbsent(int id);
-	public boolean dispose(int id);
-	public Stream<Integer> stream();
-	
+	public int createId();
+	public boolean idExists(int id);
+	public boolean removeId(int id);
+	public Collection<Integer> getIds();
+
 }
