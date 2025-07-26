@@ -38,7 +38,7 @@ public class Scene implements Screen {
     @Override
     public void show() {
     	EntityMask eMask = new EntityMask();
-    	TextureMeta meta = new SheetMeta().fromImage("textures/male_0.png");
+    	TextureMeta meta = new SheetMeta().fromImage("textures/male_0.png").withFrames(6).build();
     	Transform t = new Transform();
     	Rotation r = new Rotation();
     	components.addComponents(0, meta, t, r);

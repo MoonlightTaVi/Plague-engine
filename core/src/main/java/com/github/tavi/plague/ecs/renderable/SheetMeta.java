@@ -101,7 +101,7 @@ public class SheetMeta implements TextureMeta {
 
 	@Override
 	public Vector2 size() {
-		return dimensions;
+		return frameSize;
 	}
 
 	@Override
