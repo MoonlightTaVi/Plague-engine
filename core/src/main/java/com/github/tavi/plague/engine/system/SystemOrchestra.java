@@ -2,24 +2,39 @@ package com.github.tavi.plague.engine.system;
 
 import java.util.*;
 
-public class SystemOrchestra {
-	private List<ECSystem> systems = new ArrayList<>();
+import com.github.tavi.plague.engine.PubSubDispatcher;
+import com.github.tavi.plague.engine.entity.Entity;
 
-	public void registerSystem(ECSystem system) {
-		systems.add(system);
+public class SystemOrchestra implements AbstractProcessor, PubSubDispatcher<Entity> {
+	private List<ECSystemDispatcher> systems = new ArrayList<>();
+
+	public SystemOrchestra(ECSystemDispatcher... systems) {
+		this.systems.addAll(List.of(systems));
 	}
 	
-	public void addSubscriber(int entityId, int entityMask) {
-		for (ECSystem system : systems) {
-			int systemMask = system.getSystemMask();
-			if ((systemMask & entityMask) == systemMask) {
-				system.subscribe(entityId);
+	@Override
+	public boolean subscribe(Entity entity) {
+		boolean success = false;
+		for (ECSystemDispatcher system : systems) {
+			if (system.test(entity.getMask())) {
+				success = success || system.subscribe(entity.id);
 			}
 		}
+		return success;
 	}
 	
+	@Override
+	public boolean unsubscribe(Entity entity) {
+		boolean success = false;
+		for (ECSystemDispatcher system : systems) {
+			success = success || system.unsubscribe(entity.id);
+		}
+		return success;
+	}
+	
+	@Override
 	public void process(float delta) {
-		for (ECSystem system : systems) {
+		for (ECSystemDispatcher system : systems) {
 			system.process(delta);
 		}
 	}

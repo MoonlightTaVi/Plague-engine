@@ -24,7 +24,10 @@ public class TreeOfEntities implements Entities {
 
 	@Override
 	public int createId() {
-		int newId = entities.last() + 1;
+		int newId = 1;
+		if (!entities.isEmpty()) {
+			newId += entities.last();
+		}
 		entities.add(newId);
 		return newId;
 	}

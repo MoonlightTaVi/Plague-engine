@@ -2,12 +2,11 @@ package com.github.tavi.plague.engine;
 
 import com.github.tavi.plague.engine.component.Components;
 import com.github.tavi.plague.engine.entity.TreeOfEntities;
-import com.github.tavi.plague.engine.entity.util.EntityMask;
+import com.github.tavi.plague.engine.entity.util.MaskResolver;
 
 public class PlagueEngine {
 	private Components components = Components.get();
 	private TreeOfEntities entities = TreeOfEntities.get();
-	private EntityMask mask = new EntityMask();
 	
 	public void register(int entityId, Object... entityComponents) {
 		if (!entities.idExists(entityId)) {
@@ -15,7 +14,7 @@ public class PlagueEngine {
 		}
 		for (Object component : entityComponents) {
 			components.addComponents(entityId, component);
-			mask.register(component);
+			MaskResolver.register(component.getClass());
 		}
 	}
 	
