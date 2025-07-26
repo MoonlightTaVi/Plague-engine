@@ -1,10 +1,10 @@
-package com.github.tavi.plague.ecs;
+package com.github.tavi.plague.engine.component;
 
 import java.util.function.Supplier;
 
 /**
  * A storage of all the components, belonging to all the Entities.
- * @see com.github.tavi.plague.ecs.CattiComponents
+ * @see com.github.tavi.plague.engine.component.CattiComponents
  */
 public interface Components {
 	

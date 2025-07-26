@@ -1,4 +1,4 @@
-package com.github.tavi.plague.ecs;
+package com.github.tavi.plague.engine.entity;
 
 import java.util.stream.Stream;
 

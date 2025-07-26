@@ -1,9 +1,9 @@
 package com.github.tavi.plague.ecs.spatial;
 
 import com.badlogic.gdx.math.Vector3;
-import com.github.tavi.plague.ecs.Components;
-import com.github.tavi.plague.ecs.ECSystem;
 import com.github.tavi.plague.ecs.util.ParentRef;
+import com.github.tavi.plague.engine.component.Components;
+import com.github.tavi.plague.engine.system.ECSystem;
 
 /**
  * Updates Entity's {@code Transform} and {@code Rotation}

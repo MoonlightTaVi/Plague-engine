@@ -1,7 +1,9 @@
-package com.github.tavi.plague.game;
+package com.github.tavi.plague.engine;
 
 import com.github.tavi.plague.ecs.*;
-import com.github.tavi.plague.engine.EntityMask;
+import com.github.tavi.plague.engine.component.Components;
+import com.github.tavi.plague.engine.entity.TreeOfEntities;
+import com.github.tavi.plague.engine.entity.util.EntityMask;
 
 public class PlagueEngine {
 	private Components components = Components.get();

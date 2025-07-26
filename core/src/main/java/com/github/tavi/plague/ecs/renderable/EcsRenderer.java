@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.ecs.spatial.*;
+import com.github.tavi.plague.engine.component.Components;
+import com.github.tavi.plague.engine.system.ECSystem;
 import com.github.tavi.plague.util.io.Assets;
 
 public class EcsRenderer implements ECSystem {

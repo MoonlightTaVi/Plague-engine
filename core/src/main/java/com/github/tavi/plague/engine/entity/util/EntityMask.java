@@ -1,4 +1,4 @@
-package com.github.tavi.plague.engine;
+package com.github.tavi.plague.engine.entity.util;
 
 import java.util.Arrays;
 import java.util.Set;

@@ -15,6 +15,9 @@ import com.github.tavi.plague.ecs.renderable.*;
 import com.github.tavi.plague.ecs.spatial.*;
 import com.github.tavi.plague.ecs.states.MovementState;
 import com.github.tavi.plague.ecs.util.*;
+import com.github.tavi.plague.engine.component.Components;
+import com.github.tavi.plague.engine.entity.Entities;
+import com.github.tavi.plague.engine.system.ECSystem;
 import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */

@@ -1,4 +1,4 @@
-package com.github.tavi.plague.ecs;
+package com.github.tavi.plague.engine.entity;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import com.github.tavi.plague.engine.entity.util.EntityTagger;
 
 public class SciacalloEntities implements Entities, EntityTagger {
 	

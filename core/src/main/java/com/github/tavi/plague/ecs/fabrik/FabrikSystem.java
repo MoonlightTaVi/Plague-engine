@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.*;
 import com.github.tavi.plague.ecs.spatial.Transform;
 import com.github.tavi.plague.ecs.states.MovementState;
+import com.github.tavi.plague.engine.component.Components;
+import com.github.tavi.plague.engine.system.ECSystem;
 import com.github.tavi.plague.ecs.ik.*;
 import com.github.tavi.plague.ecs.ik.strategies.IkMovementStrategy;
 

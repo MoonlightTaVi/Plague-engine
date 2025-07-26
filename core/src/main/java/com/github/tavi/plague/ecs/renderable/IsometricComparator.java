@@ -2,8 +2,8 @@ package com.github.tavi.plague.ecs.renderable;
 
 import java.util.Comparator;
 
-import com.github.tavi.plague.ecs.Components;
 import com.github.tavi.plague.ecs.spatial.Transform;
+import com.github.tavi.plague.engine.component.Components;
 
 public class IsometricComparator implements Comparator<Integer> {
 	private Components components = Components.get();

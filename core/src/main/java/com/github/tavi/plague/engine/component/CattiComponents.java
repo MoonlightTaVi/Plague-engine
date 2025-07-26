@@ -1,4 +1,4 @@
-package com.github.tavi.plague.ecs;
+package com.github.tavi.plague.engine.component;
 
 import java.util.HashMap;
 import java.util.Map;
