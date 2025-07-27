@@ -9,8 +9,6 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.github.tavi.plague.engine.entity.util.EntityTagger;
-
 @Deprecated
 public class SciacalloEntities implements Entities, EntityTagger {
 	

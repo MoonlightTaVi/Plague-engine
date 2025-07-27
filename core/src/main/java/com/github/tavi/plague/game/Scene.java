@@ -9,9 +9,9 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.controls.InputHandler;
 import com.github.tavi.plague.ecs.renderable.*;
 import com.github.tavi.plague.ecs.spatial.*;
-import com.github.tavi.plague.engine.system.SystemOrchestra;
-import com.github.tavi.plague.engine.entity.Entities;
-import com.github.tavi.plague.engine.entity.Entity;
+import com.github.tavi.plague.engine.SystemOrchestra;
+import com.github.tavi.plague.engine.shared.Entities;
+import com.github.tavi.plague.engine.shared.Entity;
 import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */

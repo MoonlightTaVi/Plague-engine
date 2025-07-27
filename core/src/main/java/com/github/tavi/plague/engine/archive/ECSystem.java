@@ -8,6 +8,7 @@ import com.github.tavi.plague.util.NotNullValidator;
  * {@code Entity Manager} s also provide methods for tagging objects with
  * different types.
  */
+@Deprecated
 public interface ECSystem extends NotNullValidator {
 
 	public boolean validate(int entityId);

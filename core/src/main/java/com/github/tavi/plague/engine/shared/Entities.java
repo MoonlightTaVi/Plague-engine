@@ -1,6 +1,8 @@
-package com.github.tavi.plague.engine.entity;
+package com.github.tavi.plague.engine.shared;
 
 import java.util.Collection;
+
+import com.github.tavi.plague.engine.silva.TreeOfEntities;
 
 public interface Entities {
 	public static Entities get() {

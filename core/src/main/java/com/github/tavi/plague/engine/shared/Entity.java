@@ -1,8 +1,6 @@
-package com.github.tavi.plague.engine.entity;
+package com.github.tavi.plague.engine.shared;
 
-import com.github.tavi.plague.engine.component.Components;
-import com.github.tavi.plague.engine.entity.util.BitMask;
-import com.github.tavi.plague.engine.entity.util.BitMaskComponent;
+import com.github.tavi.plague.engine.bitmask.*;
 
 public class Entity implements BitMask {
 	private final Components components = Components.get();

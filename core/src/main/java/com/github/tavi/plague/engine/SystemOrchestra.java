@@ -1,10 +1,11 @@
-package com.github.tavi.plague.engine.system;
+package com.github.tavi.plague.engine;
 
 import java.util.*;
 
-import com.github.tavi.plague.engine.PubSubDispatcher;
-import com.github.tavi.plague.engine.entity.Entity;
-import com.github.tavi.plague.engine.entity.util.MaskResolver;
+import com.github.tavi.plague.engine.shared.Entity;
+import com.github.tavi.plague.engine.system.AbstractProcessor;
+import com.github.tavi.plague.engine.system.ECSystemDispatcher;
+import com.github.tavi.plague.util.PubSubDispatcher;
 
 public class SystemOrchestra implements AbstractProcessor, PubSubDispatcher<Entity> {
 	private List<ECSystemDispatcher> systems = new ArrayList<>();
@@ -13,14 +14,12 @@ public class SystemOrchestra implements AbstractProcessor, PubSubDispatcher<Enti
 		for (BaseEntityProcessor processor : processors) {
 			ECSystemDispatcher system = new ECSystemDispatcher(processor);
 			systems.add(system);
-			MaskResolver.register(system.getInvolvedComponents());
 		}
 	}
 	
 	public SystemOrchestra(ECSystemDispatcher... systems) {
 		for (ECSystemDispatcher system : systems) {
 			this.systems.add(system);
-			MaskResolver.register(system.getInvolvedComponents());
 		}
 	}
 	

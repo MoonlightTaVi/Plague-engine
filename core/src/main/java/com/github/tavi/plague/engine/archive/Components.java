@@ -6,6 +6,7 @@ import java.util.function.Supplier;
  * A storage of all the components, belonging to all the Entities.
  * @see com.github.tavi.plague.engine.archive.CattiComponents
  */
+@Deprecated
 public interface Components {
 	
 	public static Components get() {

@@ -2,6 +2,7 @@ package com.github.tavi.plague.engine.archive;
 
 import java.util.stream.Stream;
 
+@Deprecated
 public interface Entities {
 	
 	public static Entities get() {

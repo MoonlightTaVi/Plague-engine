@@ -1,8 +1,10 @@
-package com.github.tavi.plague.engine.entity;
+package com.github.tavi.plague.engine.silva;
 
 import java.util.Collection;
 import java.util.TreeSet;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.github.tavi.plague.engine.shared.Entities;
 
 public class TreeOfEntities implements Entities {
 	private static TreeOfEntities instance = null;

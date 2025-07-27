@@ -1,7 +1,8 @@
-package com.github.tavi.plague.engine.system;
+package com.github.tavi.plague.engine;
 
-import com.github.tavi.plague.engine.component.Components;
-import com.github.tavi.plague.engine.entity.util.*;
+import com.github.tavi.plague.engine.bitmask.*;
+import com.github.tavi.plague.engine.shared.Components;
+import com.github.tavi.plague.engine.system.EntityProcessor;
 
 public abstract class BaseEntityProcessor implements EntityProcessor, BitMask {
 	private Components components = Components.get();

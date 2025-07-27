@@ -2,8 +2,9 @@ package com.github.tavi.plague.engine.system;
 
 import java.util.*;
 
-import com.github.tavi.plague.engine.PubSubDispatcher;
-import com.github.tavi.plague.engine.entity.util.BitMask;
+import com.github.tavi.plague.engine.BaseEntityProcessor;
+import com.github.tavi.plague.engine.bitmask.BitMask;
+import com.github.tavi.plague.util.PubSubDispatcher;
 
 public class ECSystemDispatcher implements AbstractProcessor, PubSubDispatcher<Integer>, BitMask {
 	private BaseEntityProcessor processor;

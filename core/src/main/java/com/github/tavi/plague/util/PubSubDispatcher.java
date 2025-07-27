@@ -1,4 +1,4 @@
-package com.github.tavi.plague.engine;
+package com.github.tavi.plague.util;
 
 public interface PubSubDispatcher<T> {
 

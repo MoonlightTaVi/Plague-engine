@@ -1,6 +1,8 @@
-package com.github.tavi.plague.engine.component;
+package com.github.tavi.plague.engine.shared;
 
 import java.util.Collection;
+
+import com.github.tavi.plague.engine.silva.ComponentsSpread;
 
 public interface Components {
 	

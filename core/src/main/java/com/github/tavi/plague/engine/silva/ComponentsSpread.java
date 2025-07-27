@@ -1,7 +1,9 @@
-package com.github.tavi.plague.engine.component;
+package com.github.tavi.plague.engine.silva;
 
 import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.github.tavi.plague.engine.shared.Components;
 
 public class ComponentsSpread implements Components {
 	private static ComponentsSpread instance = null;

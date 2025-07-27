@@ -1,4 +1,4 @@
-package com.github.tavi.plague.engine.entity.util;
+package com.github.tavi.plague.engine.bitmask;
 
 import java.util.*;
 
