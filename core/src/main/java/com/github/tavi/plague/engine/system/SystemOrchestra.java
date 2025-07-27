@@ -4,19 +4,35 @@ import java.util.*;
 
 import com.github.tavi.plague.engine.PubSubDispatcher;
 import com.github.tavi.plague.engine.entity.Entity;
+import com.github.tavi.plague.engine.entity.util.MaskResolver;
 
 public class SystemOrchestra implements AbstractProcessor, PubSubDispatcher<Entity> {
 	private List<ECSystemDispatcher> systems = new ArrayList<>();
 
+	public SystemOrchestra(BaseEntityProcessor... processors) {
+		for (BaseEntityProcessor processor : processors) {
+			ECSystemDispatcher system = new ECSystemDispatcher(processor);
+			systems.add(system);
+			MaskResolver.register(system.getInvolvedComponents());
+		}
+	}
+	
 	public SystemOrchestra(ECSystemDispatcher... systems) {
-		this.systems.addAll(List.of(systems));
+		for (ECSystemDispatcher system : systems) {
+			this.systems.add(system);
+			MaskResolver.register(system.getInvolvedComponents());
+		}
+	}
+	
+	public boolean subscribe(int entityId) {
+		return subscribe(new Entity(entityId));
 	}
 	
 	@Override
 	public boolean subscribe(Entity entity) {
 		boolean success = false;
 		for (ECSystemDispatcher system : systems) {
-			if (system.test(entity.getMask())) {
+			if (system.test(entity.value())) {
 				success = success || system.subscribe(entity.id);
 			}
 		}

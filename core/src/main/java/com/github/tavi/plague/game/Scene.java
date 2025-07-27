@@ -9,18 +9,16 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.github.tavi.plague.controls.InputHandler;
 import com.github.tavi.plague.ecs.renderable.*;
 import com.github.tavi.plague.ecs.spatial.*;
-import com.github.tavi.plague.engine.component.Components;
-import com.github.tavi.plague.engine.system.ECSystemDispatcher;
+import com.github.tavi.plague.engine.system.SystemOrchestra;
 import com.github.tavi.plague.engine.entity.Entities;
-import com.github.tavi.plague.engine.entity.util.MaskResolver;
+import com.github.tavi.plague.engine.entity.Entity;
 import com.github.tavi.plague.util.io.Assets;
 
 /** The main implementation of LibGDX's Screen, used in Plague Engine. */
 public class Scene implements Screen {
 	
 	// TEMPORARY --->
-	private Components components = Components.get();
-	private ECSystemDispatcher renderer = null;
+	private SystemOrchestra engine = null;
 	//private Comparator<Integer> renderSort = new IsometricComparator();
 	private Assets assets = Assets.get();
 	private Entities entities = Entities.get();
@@ -32,15 +30,16 @@ public class Scene implements Screen {
 	
     @Override
     public void show() {
-    	MaskResolver.register(TextureMeta.class, Transform.class, Rotation.class);
-    	MaskResolver.build();
-    	int id = entities.createId();
+    	engine = new SystemOrchestra(new EcsRenderer());
+    	
     	TextureMeta meta = new SheetMeta().fromImage("textures/male_0.png").withFrames(6).build();
-    	Transform t = new Transform();
-    	Rotation r = new Rotation();
-    	components.addComponents(id, meta, t, r);
-    	renderer = new ECSystemDispatcher(new EcsRenderer());
-    	renderer.subscribe(id);
+    	Entity entity = new Entity(
+    			entities.createId(),
+    			meta,
+    			new Transform(),
+    			new Rotation()
+    			);
+    	engine.subscribe(entity);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class Scene implements Screen {
         
         assets.batch().begin();
         
-        renderer.process(delta);
+        engine.process(delta);
         
         assets.batch().end();
     }

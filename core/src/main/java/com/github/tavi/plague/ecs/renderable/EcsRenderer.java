@@ -4,10 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.spatial.*;
-import com.github.tavi.plague.engine.system.EntityProcessor;
+import com.github.tavi.plague.engine.system.BaseEntityProcessor;
 import com.github.tavi.plague.util.io.Assets;
 
-public class EcsRenderer extends EntityProcessor {
+public class EcsRenderer extends BaseEntityProcessor {
 	private Assets assets = Assets.get();
 	private SpriteBatch batch = assets.batch();
 

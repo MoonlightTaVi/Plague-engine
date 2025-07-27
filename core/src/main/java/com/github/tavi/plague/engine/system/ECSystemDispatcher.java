@@ -3,17 +3,23 @@ package com.github.tavi.plague.engine.system;
 import java.util.*;
 
 import com.github.tavi.plague.engine.PubSubDispatcher;
+import com.github.tavi.plague.engine.entity.util.BitMask;
 
-public class ECSystemDispatcher implements AbstractProcessor, PubSubDispatcher<Integer> {
-	private EntityProcessor processor;
+public class ECSystemDispatcher implements AbstractProcessor, PubSubDispatcher<Integer>, BitMask {
+	private BaseEntityProcessor processor;
 	private TreeSet<Integer> subscribers = new TreeSet<>();
 	
-	public ECSystemDispatcher(EntityProcessor processor) {
+	public ECSystemDispatcher(BaseEntityProcessor processor) {
 		this.processor = processor;
 	}
 	
-	public boolean test(int mask) {
-		return processor.test(mask);
+	@Override
+	public Class<?>[] getInvolvedComponents() {
+		return processor.getInvolvedComponents();
+	}
+	@Override
+	public int value() {
+		return processor.value();
 	}
 	
 	@Override
@@ -27,7 +33,7 @@ public class ECSystemDispatcher implements AbstractProcessor, PubSubDispatcher<I
 	
 	@Override
 	public void process(float delta) {
-		if (!processor.isActive) {
+		if (!processor.isActive()) {
 			return;
 		}
 		for (int sub : subscribers) {
