@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.github.tavi.plague.ecs.ik.BoneVector;
 import com.github.tavi.plague.ecs.ik.IkArm;
 import com.github.tavi.plague.ecs.spatial.Transform;
-import com.github.tavi.plague.ecs.util.Entity;
+import com.github.tavi.plague.engine.archive.Entity;
 import com.github.tavi.plague.util.vectors.VectorChain;
 
 /**

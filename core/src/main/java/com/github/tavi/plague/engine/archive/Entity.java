@@ -1,8 +1,6 @@
-package com.github.tavi.plague.ecs.util;
+package com.github.tavi.plague.engine.archive;
 
 import java.util.function.Supplier;
-
-import com.github.tavi.plague.engine.archive.Components;
 
 /**
  * A mediator class to make cooperation between EC Systems

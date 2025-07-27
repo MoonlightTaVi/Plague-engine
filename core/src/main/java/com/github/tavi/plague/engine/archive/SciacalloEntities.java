@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 import com.github.tavi.plague.engine.entity.util.EntityTagger;
 
+@Deprecated
 public class SciacalloEntities implements Entities, EntityTagger {
 	
 	private static volatile Entities INSTANCE = null;

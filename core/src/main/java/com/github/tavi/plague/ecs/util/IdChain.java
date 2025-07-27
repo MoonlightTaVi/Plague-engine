@@ -2,6 +2,8 @@ package com.github.tavi.plague.ecs.util;
 
 import java.util.Iterator;
 
+import com.github.tavi.plague.engine.archive.Entity;
+
 /**
  * A chain of Entity IDs with a fixed length.
  * Use it whenever you need to chain Entities.
@@ -47,7 +49,7 @@ public class IdChain implements Iterable<Integer> {
 	/**
 	 * Maps IDs in the chain to Entities and returns the resulting array.
 	 * @return Array of Entities.
-	 * @see com.github.tavi.plague.ecs.util.Entity
+	 * @see com.github.tavi.plague.engine.archive.Entity
 	 */
 	public Entity[] entities() {
 		Entity[] entities = new Entity[IDs.length];

@@ -1,9 +1,6 @@
 package com.github.tavi.plague.ecs.fabrik;
 
 import com.badlogic.gdx.math.Vector3;
-import com.github.tavi.plague.ecs.renderable.TextureMeta;
-import com.github.tavi.plague.ecs.spatial.Transform;
-import com.github.tavi.plague.engine.archive.Components;
 
 /**
  * The simplest (and the less efficient) Inverse Kinematics algorithm. <br>

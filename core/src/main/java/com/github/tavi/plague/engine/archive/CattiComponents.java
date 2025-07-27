@@ -13,6 +13,7 @@ import java.util.function.Supplier;
  * it is possible to iterate through all the components of all entities, though
  * (which may hurt performance very much).
  */
+@Deprecated
 public class CattiComponents implements Components {
 	
 	private static volatile CattiComponents INSTANCE = null;
