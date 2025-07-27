@@ -1,6 +1,12 @@
 # Plague-engine
 _If can't choose from a few, choose all_
 
+> At the moment I am in a search for the better engine structure.
+> As I've started pushing to `main`, I will keep pushing to `main` for now.
+> Some of the ideas were reimagined, but I'll keep README the same for the time being.
+> Currently the engine basis is under development. FABRIK is ready, but (I think) I won't use it for now.
+> Pretty soon the structure will be ready for further development.
+
 The main goals of the project are:
 - Pipeline the development of games I tend to make, but can't finish them because of technical issues with existing engines
 - Utilize **Dependency Inversion** in such a way, that any system/component could be remade without breaking the other systems
